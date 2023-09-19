@@ -1,17 +1,3 @@
-class Todo {
-    constructor(title, description, dueDate, creationDate, notes, state, priority, todoId, projectId) {
-        this.title = title; 
-        this.description = description; 
-        this.dueDate = dueDate;
-        this.creationDate = creationDate; 
-        this.notes = notes; 
-        this.state = state; 
-        this.priority = priority;
-        this.todoId = todoId;
-        this.projectId = projectId;
-    }
-}
-
 class Project {
     constructor(title) {
         this.title = title;
@@ -46,6 +32,30 @@ class Project {
 
         this.todos.push(newNote);
     }
+
+    deleteTodo(id) {
+        const todoIndex = this.todos.findIndex((e) => +e.todoId === +id);
+        console.log(this.todos)
+        console.log(todoIndex)
+        if(todoIndex >= 0) {
+            this.todos.splice(todoIndex, 1)
+        }
+    }
 }
+
+class Todo {
+    constructor(title, description, dueDate, creationDate, notes, state, priority, todoId, projectId) {
+        this.title = title; 
+        this.description = description; 
+        this.dueDate = dueDate;
+        this.creationDate = creationDate; 
+        this.notes = notes; 
+        this.state = state; 
+        this.priority = priority;
+        this.todoId = todoId;
+        this.projectId = projectId;
+    }
+}
+
 
 export default Project
