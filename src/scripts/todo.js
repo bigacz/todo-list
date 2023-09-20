@@ -10,7 +10,6 @@ class Project {
     
     static addProject(title) {
         const newProject = new Project(title);
-        console.log(newProject);
 
         this.all.push(newProject);
     }
