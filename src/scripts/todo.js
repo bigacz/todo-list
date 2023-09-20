@@ -14,13 +14,13 @@ class Project {
 
         this.all.push(newProject);
     }
-    static getAllProjects() {
-        return this.all;
-    }
     static getProject(id) {
         const projectIndex = this.all.findIndex((e) => e.id === id);
-
+        
         return this.all[projectIndex];
+    }
+    static getAllProjects() {
+        return this.all;
     }
 
     todoId = 0;
@@ -32,14 +32,20 @@ class Project {
 
         this.todos.push(newNote);
     }
-
     deleteTodo(id) {
         const todoIndex = this.todos.findIndex((e) => +e.todoId === +id);
-        console.log(this.todos)
-        console.log(todoIndex)
+
         if(todoIndex >= 0) {
             this.todos.splice(todoIndex, 1)
         }
+    }
+    getTodo(id) {
+        const todoIndex = this.todos.findIndex((e) => +e.todoId === +id);
+
+        return this.todos[todoIndex];
+    }
+    getAllTodos() {
+        return this.todos
     }
 }
 

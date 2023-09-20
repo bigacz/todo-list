@@ -21,5 +21,6 @@ console.log(projects[1]);
 
 projects[1].deleteTodo(2)
 projects[1].deleteTodo(3)
+console.log(projects[1].getAllTodos(1));
 
 console.log(Project.getAllProjects());
