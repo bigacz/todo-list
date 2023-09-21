@@ -7,10 +7,20 @@
     <script src="main.js" defer></script>
 </head>
 <body>
+    <button id="todo-activate" type="button">Add Todo</button>
     <div>
         <h1 id="project-name">All</h1>
         <div id="todos-container"></div>
     </div>
-    
+    <div id="add-todo-form-wrapper" class="add-todo-form-wrapper">
+        <form id="add-todo-form">
+            <input type="text" name="todo-name" id="todo-name">
+            <input type="text" name="todo-description" id="todo-description">
+            <input type="date" name="todo-due-date" id="todo-due-date" value="2018-07-22">
+            <input type="range" name="todo-priority" id="todo-priority" min="0" max="2" value="0">
+            <textarea name="todo-notes" id="todo-notes" cols="30" rows="10" placeholder="Notes"></textarea>
+            <button type="button" id="todo-submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

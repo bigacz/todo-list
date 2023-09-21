@@ -2,6 +2,15 @@ body {
     background-color: rgb(29, 28, 28);
 }
 
-* {
+h1, h2, p, span {
     color: white;
+}
+
+.add-todo-form-wrapper {
+    display: none;
+
+}
+
+.add-todo-form-wrapper.active {
+    display: flex;
 }
