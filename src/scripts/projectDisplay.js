@@ -33,7 +33,8 @@ function changeProject(projectId) {
 
 function updateProject() {
 
-    const currentProject = ProjectLogic.getProject(currentProjectId);
+    const currentProject = ProjectLogic.getProject(+currentProjectId);
+    console.log(currentProject);
     projectNameNode.textContent = currentProject.title;
     removeTodos();
     addTodos(currentProject.getAllTodos());

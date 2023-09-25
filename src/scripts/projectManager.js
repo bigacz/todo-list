@@ -9,10 +9,8 @@ PubSub.subscribe('submitTodoForm', (msg, values) => {
 })
 
 function addProject(title) {
-    ProjectLogic.addProject('title');
-    const project = getCurrentProject();
-
-    ProjectDisplay.addProject(project.id, title);
+    ProjectDisplay.addProject(ProjectLogic.projectId, title);
+    ProjectLogic.addProject(title);
 }
 
 function addTodo(values) {

@@ -11,10 +11,10 @@ class Project {
     static addProject(title) {
         const newProject = new Project(title);
 
-        this.all.push(newProject);
+        Project.all.push(newProject);
     }
     static getProject(id) {
-        const projectIndex = this.all.findIndex((e) => e.id === id);
+        const projectIndex = Project.all.findIndex((e) => e.id === +id);
         
         return Project.all[projectIndex];
     }
