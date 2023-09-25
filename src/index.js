@@ -19,14 +19,13 @@ const projects = ProjectLogic.getAllProjects();
 console.log(projects)
 
 ProjectManager.addTodo({
-    title: 0,
-    description: "super opis", 
+    title: 'Title 1',
+    description: 'Fine description', 
     dueDate:'2023-12-12',
     creationDate:"2000-05-01",
-    priority: "zadne"
+    priority: 'moderate'
 });
 
-ProjectDisplay.changeProject(1);
 
 /*
 

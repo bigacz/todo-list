@@ -7,15 +7,18 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <button id="todo-activate" type="button">Add Todo</button>
-    <div>
+    <header class="header">Todo</header>
+    <div class="sidebar" id="project-container">
+        <button id="todo-activate" type="button">Add Todo</button>
+    </div>
+    <div class="display">
         <h1 id="project-name">All</h1>
-        <div id="todos-container"></div>
+        <div id="todos-container">
+        </div>
     </div>
-    <div id="project-container">
-    </div>
+
     <div id="add-todo-form-wrapper" class="add-todo-form-wrapper">
-        <form id="add-todo-form">
+        <form id="add-todo-form" class="add-todo-form">
             <input type="text" name="todo-name" id="todo-name">
             <input type="text" name="todo-description" id="todo-description">
             <input type="date" name="todo-due-date" id="todo-due-date" value="2018-07-22">

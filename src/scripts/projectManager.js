@@ -32,3 +32,5 @@ export default {
     addProject,
     addTodo 
 }
+
+addProject('All');

@@ -33,5 +33,3 @@ function getValues() {
 }
 
 export default {toggle}
-
-toggle();

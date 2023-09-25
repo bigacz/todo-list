@@ -1,16 +1,56 @@
-body {
-    background-color: rgb(29, 28, 28);
-}
+/* Temporary */
 
-h1, h2, p, span {
+h1, h2, p, span, header {
     color: white;
 }
 
-.add-todo-form-wrapper {
-    display: none;
+/* */
 
+body {
+    position: relative;
+    background-color: rgb(29, 28, 28);
+    display: grid;
+    height: 100vh;
+    grid-template-areas:  
+    "header header"
+    "sidebar display";
+    grid-template-columns: 20vw 1fr;
+    grid-template-rows: 10vh 1fr;
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    grid-area: display;
+}
+
+.display div {
+    border: 1px solid blue;
+}
+
+
+
+.add-todo-form-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
 }
 
 .add-todo-form-wrapper.active {
     display: flex;
+}
+
+.add-todo-form {
+    display: flex;
+    flex-direction: column;
 }

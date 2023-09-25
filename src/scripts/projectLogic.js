@@ -59,8 +59,6 @@ class Project {
     }
 }
 
-Project.addProject('All');
-
 class Todo {
     constructor(title, description, dueDate, creationDate, notes, state, priority, todoId, projectId) {
         this.title = title; 
