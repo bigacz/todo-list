@@ -1,29 +1,40 @@
 import './style.css';
 import 'normalize.css';
-import Project from './scripts/todo';
-import ProjectGui from './scripts/projectGui'
-import AddTodoForm from './scripts/addTodoForm'
+import 'pubsub-js';
+import './scripts/projectManager'
+
+import ProjectLogic from './scripts/projectLogic';
+import ProjectDisplay from './scripts/projectDisplay';
+import AddTodoForm from './scripts/addTodoForm';
+import ProjectManager from './scripts/projectManager'
 
 
-Project.addProject('zero');
-Project.addProject('raz');
-Project.addProject('dwa');
-Project.addProject('trzy');
 
-const projects = Project.getAllProjects();
+ProjectManager.addProject('zero');
+ProjectManager.addProject('raz'); 
+ProjectManager.addProject('dwa'); 
+ProjectManager.addProject('trzy');
 
-projects[1].addTodo(0, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(1, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(2, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(3, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(4, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(6, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(7, "super opis", '2023-12-12', "2000-05-01", "zadne");
-projects[1].addTodo(8, "super opis", '2023-12-12', "2000-05-01", "zadne");
+const projects = ProjectLogic.getAllProjects();
 
-projects[1].deleteTodo(2)
-projects[1].deleteTodo(3)
+ProjectManager.addTodo({
+    title: 0,
+    description: "super opis", 
+    dueDate:'2023-12-12',
+    creationDate:"2000-05-01",
+    priority: "zadne"
+});
 
-console.log(projects[1]);
+ProjectDisplay.changeProject(1);
 
-ProjectGui.addProject(projects[1]);
+/*
+
+projects[1].addTodo({
+    title: 0,
+    description: "super opis", 
+    dueDate:'2023-12-12',
+    creationDate:"2000-05-01",
+    priority: "zadne"
+});
+
+*/

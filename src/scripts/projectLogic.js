@@ -16,7 +16,7 @@ class Project {
     static getProject(id) {
         const projectIndex = this.all.findIndex((e) => e.id === id);
         
-        return this.all[projectIndex];
+        return Project.all[projectIndex];
     }
     static getAllProjects() {
         return this.all;
@@ -25,8 +25,19 @@ class Project {
     todoId = 0;
     todos = [];
 
-    addTodo(title, description, dueDate, creationDate, notes, priority) {
-        const newNote = new Todo(title, description, dueDate, creationDate, notes, 0, priority, this.todoId, this.id);
+    addTodo(values) {
+        const newNote = 
+        new Todo(
+            values.title, 
+            values.description, 
+            values.dueDate, 
+            values.creationDate, 
+            values.notes, 
+            0, 
+            values.priority, 
+            this.todoId, 
+            this.id
+            );
         this.todoId++;
 
         this.todos.push(newNote);
@@ -48,6 +59,8 @@ class Project {
     }
 }
 
+Project.addProject('All');
+
 class Todo {
     constructor(title, description, dueDate, creationDate, notes, state, priority, todoId, projectId) {
         this.title = title; 
@@ -61,6 +74,5 @@ class Todo {
         this.projectId = projectId;
     }
 }
-
 
 export default Project
