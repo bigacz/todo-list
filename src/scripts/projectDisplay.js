@@ -50,12 +50,18 @@ function updateProject() {
     } else {
         todos = currentProject.getAllTodos();
     }
+
     appendTodos(todos);
 }
 
 // Private functions //
 
 function appendTodos(todos) {
+    if(todos.length === 0) {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = 'No todos!'
+        todosContainer.appendChild(paragraph);
+    }
     todos.forEach(element => {
         const title = document.createElement('h2');
         const description = document.createElement('p');
@@ -74,11 +80,12 @@ function appendTodos(todos) {
             const todoId = node.getAttribute('data-todo-id');
             const projectId = node.getAttribute('data-project-id');
 
-            PubSub.publish('deleteTodo', {projectId: projectId, 
+            PubSub.publishSync('deleteTodo', {projectId: projectId, 
                 todoId: todoId
             });
-
             node.remove();
+            
+            updateProject();
         })
         
         const node = document.createElement('div');
