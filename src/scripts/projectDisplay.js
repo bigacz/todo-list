@@ -33,10 +33,24 @@ function changeProject(projectId) {
 }
 
 function updateProject() {
-    const currentProject = ProjectLogic.getProject(+currentProjectId);
+    const projectId = +currentProjectId;
+    const currentProject = ProjectLogic.getProject(projectId);
     projectNameNode.textContent = currentProject.title;
+
     unappendTodos();
-    appendTodos(currentProject.getAllTodos());
+
+    let todos = [];
+    if(projectId === 0) {
+        const projects = ProjectLogic.getAllProjects();
+
+        projects.forEach((e) => {
+            const todosArray = e.getAllTodos();
+            todos.push(...todosArray);
+        })
+    } else {
+        todos = currentProject.getAllTodos();
+    }
+    appendTodos(todos);
 }
 
 // Private functions //
@@ -73,11 +87,6 @@ function appendTodos(todos) {
         node.append(title, description, dueDate, creationDate, deleteButton);
         todosContainer.appendChild(node);
     });
-}
-
-function removeTodo(todoId,) {
-
-
 }
 
 function unappendTodos() {
