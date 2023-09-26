@@ -1,4 +1,6 @@
 import ProjectLogic from './projectLogic';
+import 'pubsub-js';
+
 
 const todosContainer = document.getElementById('todos-container');
 const projectNameNode = document.getElementById('project-name');
@@ -14,11 +16,10 @@ function addProject(id, name) {
 
     projectButton.addEventListener('click', (e) => {
         const projectId = e.currentTarget.getAttribute('data-id')
-        console.log(projectId);
+
         changeProject(projectId);
     })
 
-    
     projectContainer.appendChild(projectButton);
 }
 
@@ -32,35 +33,54 @@ function changeProject(projectId) {
 }
 
 function updateProject() {
-
     const currentProject = ProjectLogic.getProject(+currentProjectId);
-    console.log(currentProject);
     projectNameNode.textContent = currentProject.title;
-    removeTodos();
-    addTodos(currentProject.getAllTodos());
+    unappendTodos();
+    appendTodos(currentProject.getAllTodos());
 }
 
 // Private functions //
 
-function addTodos(todos) {
+function appendTodos(todos) {
     todos.forEach(element => {
-        const node = document.createElement('div');
         const title = document.createElement('h2');
         const description = document.createElement('p');
         const dueDate = document.createElement('span');
         const creationDate = document.createElement('span');
-
+        const deleteButton = document.createElement('button');
+        
         title.textContent = element.title;
         description.textContent = element.description;
         dueDate.textContent = element.dueDate;
         creationDate.textContent = element.creationDate;
+        deleteButton.textContent = '✓';
+        
+        deleteButton.addEventListener('click', (e) => {
+            const node = e.currentTarget.parentElement;
+            const todoId = node.getAttribute('data-todo-id');
+            const projectId = node.getAttribute('data-project-id');
 
-        node.append(title, description, dueDate, creationDate);
+            PubSub.publish('deleteTodo', {projectId: projectId, 
+                todoId: todoId
+            });
+
+            node.remove();
+        })
+        
+        const node = document.createElement('div');
+        node.setAttribute('data-todo-id', element.id);
+        node.setAttribute('data-project-id', element.projectId);
+        node.append(title, description, dueDate, creationDate, deleteButton);
         todosContainer.appendChild(node);
     });
-} 
+}
 
-function removeTodos() {
+function removeTodo(todoId,) {
+
+
+}
+
+function unappendTodos() {
     while(todosContainer.childElementCount > 0) {
         todosContainer.removeChild(todosContainer.firstChild);
     }

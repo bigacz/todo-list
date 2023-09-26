@@ -16,7 +16,6 @@ ProjectManager.addProject('dwa');
 ProjectManager.addProject('trzy');
 
 const projects = ProjectLogic.getAllProjects();
-console.log(projects)
 
 ProjectManager.addTodo({
     title: 'Title 1',

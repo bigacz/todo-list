@@ -43,14 +43,14 @@ class Project {
         this.todos.push(newNote);
     }
     deleteTodo(id) {
-        const todoIndex = this.todos.findIndex((e) => +e.todoId === +id);
+        const todoIndex = this.todos.findIndex((e) => +e.id === +id);
 
         if(todoIndex >= 0) {
             this.todos.splice(todoIndex, 1)
         }
     }
     getTodo(id) {
-        const todoIndex = this.todos.findIndex((e) => +e.todoId === +id);
+        const todoIndex = this.todos.findIndex((e) => +e.id === +id);
 
         return this.todos[todoIndex];
     }
@@ -60,7 +60,7 @@ class Project {
 }
 
 class Todo {
-    constructor(title, description, dueDate, creationDate, notes, state, priority, todoId, projectId) {
+    constructor(title, description, dueDate, creationDate, notes, state, priority, id, projectId) {
         this.title = title; 
         this.description = description; 
         this.dueDate = dueDate;
@@ -68,7 +68,7 @@ class Todo {
         this.notes = notes; 
         this.state = state; 
         this.priority = priority;
-        this.todoId = todoId;
+        this.id = id;
         this.projectId = projectId;
     }
 }
