@@ -15,6 +15,12 @@ formSubmit.addEventListener('click', () => {
     PubSub.publish('submitTodoForm', getValues());
 })
 
+formWrapper.addEventListener('click', (e) => {
+    if(e.target.id === formWrapper.id) {
+        toggle();
+    }
+});
+
 activateButton.addEventListener('click', toggle)
 
 function toggle() {

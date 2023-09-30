@@ -6,9 +6,7 @@ import './scripts/projectManager'
 import ProjectLogic from './scripts/projectLogic';
 import ProjectDisplay from './scripts/projectDisplay';
 import AddTodoForm from './scripts/addTodoForm';
-import ProjectManager from './scripts/projectManager'
-
-
+import ProjectManager from './scripts/projectManager';
 
 ProjectManager.addProject('zero');
 ProjectManager.addProject('raz'); 
@@ -22,18 +20,5 @@ ProjectManager.addTodo({
     description: 'Fine description', 
     dueDate:'2023-12-12',
     creationDate:"2000-05-01",
-    priority: 'moderate'
+    priority: 1
 });
-
-
-/*
-
-projects[1].addTodo({
-    title: 0,
-    description: "super opis", 
-    dueDate:'2023-12-12',
-    creationDate:"2000-05-01",
-    priority: "zadne"
-});
-
-*/

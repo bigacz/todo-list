@@ -63,6 +63,7 @@ function appendTodos(todos) {
         todosContainer.appendChild(paragraph);
     }
     todos.forEach(element => {
+        const node = document.createElement('div');
         const title = document.createElement('h2');
         const description = document.createElement('p');
         const dueDate = document.createElement('span');
@@ -74,26 +75,46 @@ function appendTodos(todos) {
         dueDate.textContent = element.dueDate;
         creationDate.textContent = element.creationDate;
         deleteButton.textContent = '✓';
-        
-        deleteButton.addEventListener('click', (e) => {
-            const node = e.currentTarget.parentElement;
-            const todoId = node.getAttribute('data-todo-id');
-            const projectId = node.getAttribute('data-project-id');
 
-            PubSub.publishSync('deleteTodo', {projectId: projectId, 
-                todoId: todoId
-            });
-            node.remove();
-            
-            updateProject();
-        })
+        let priority;
+        switch(element.priority) {
+            case 0: 
+                priority = 'low';
+                break;
+            case 1: 
+                priority = 'medium';
+                break;
+            case 2: 
+                priority = 'high';
+                break;
+        }
+        node.classList.toggle('todo')
+        node.classList.toggle(priority);
+
         
-        const node = document.createElement('div');
+        deleteButton.addEventListener('click', handleDelete)
+        
         node.setAttribute('data-todo-id', element.id);
         node.setAttribute('data-project-id', element.projectId);
         node.append(title, description, dueDate, creationDate, deleteButton);
         todosContainer.appendChild(node);
     });
+}
+
+// Private //
+
+
+function handleDelete(e) {
+    const node = e.currentTarget.parentElement;
+        const todoId = node.getAttribute('data-todo-id');
+        const projectId = node.getAttribute('data-project-id');
+
+        PubSub.publishSync('deleteTodo', {projectId: projectId, 
+            todoId: todoId
+        });
+        node.remove();
+        
+        updateProject();
 }
 
 function unappendTodos() {
