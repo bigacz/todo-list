@@ -9,6 +9,7 @@
 <body>
     <header class="header">Todo</header>
     <div class="sidebar" id="project-container">
+        <button type="button" id="project-activate">New Project</button>
     </div>
     <div class="display">
         <div class="project-header">
@@ -27,6 +28,13 @@
             <input type="range" name="todo-priority" id="todo-priority" min="0" max="2" value="0">
             <textarea name="todo-notes" id="todo-notes" cols="30" rows="10" placeholder="Notes"></textarea>
             <button type="button" id="todo-submit">Submit</button>
+        </form>
+    </div>
+    
+    <div id="add-project-form-wrapper" class="add-project-form-wrapper">
+        <form id="add-project-form">
+            <input type="text" name="add-project-form-name" id="add-project-form-name">
+            <button type="button" id="project-submit">Submit</button>
         </form>
     </div>
 </body>

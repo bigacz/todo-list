@@ -3,10 +3,11 @@ import 'normalize.css';
 import 'pubsub-js';
 import './scripts/projectManager'
 
+import ProjectManager from './scripts/projectManager';
 import ProjectLogic from './scripts/projectLogic';
+import AddProjectForm from './scripts/addProjectForm';
 import ProjectDisplay from './scripts/projectDisplay';
 import AddTodoForm from './scripts/addTodoForm';
-import ProjectManager from './scripts/projectManager';
 
 ProjectManager.addProject('zero');
 ProjectManager.addProject('raz'); 
