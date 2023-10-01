@@ -13,6 +13,8 @@ const formSubmit = document.getElementById('todo-submit');
 
 formSubmit.addEventListener('click', () => {
     PubSub.publish('submitTodoForm', getValues());
+    toggle();
+    clearInputs();
 })
 
 formWrapper.addEventListener('click', (e) => {
@@ -27,13 +29,20 @@ function toggle() {
     formWrapper.classList.toggle('active');
 }
 
+function clearInputs() {
+    const inputs = formNode.childNodes;
+    inputs.forEach(e => {
+        e.value = '';
+    })
+
+} 
+
 function getValues() {
     return {
         title: formName.value,    
         description: formDescription.value,
-        dueDate: formDueDate.value,
-        creationDate: '2022-2022-2022',
-        priority: formPriority.value,
+        dueDate: formDueDate.valueAsDate,
+        priority: +formPriority.value,
         notes: formNotes.value
     }
 }

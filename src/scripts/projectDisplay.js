@@ -56,24 +56,41 @@ function updateProject() {
 
 // Private functions //
 
-function appendTodos(todos) {
+function appendTodos(pretodos) {
+    let todos = [...pretodos]
+    
     if(todos.length === 0) {
         const paragraph = document.createElement('p');
         paragraph.textContent = 'No todos!'
         todosContainer.appendChild(paragraph);
+
+        return
     }
+    const todoNodes = generate(todos);
+    todoNodes.forEach((e) => {
+        todosContainer.appendChild(e);
+    })
+
+
+
+}
+
+// Private //
+
+function generate(todos) {
+    const returnNodes = [];
     todos.forEach(element => {
         const node = document.createElement('div');
         const title = document.createElement('h2');
         const description = document.createElement('p');
-        const dueDate = document.createElement('span');
         const creationDate = document.createElement('span');
+        const dueDate = document.createElement('span');
         const deleteButton = document.createElement('button');
         
         title.textContent = element.title;
         description.textContent = element.description;
         dueDate.textContent = element.dueDate;
-        creationDate.textContent = element.creationDate;
+        creationDate.textContent = element.createdAgo;
         deleteButton.textContent = '✓';
 
         let priority;
@@ -91,17 +108,16 @@ function appendTodos(todos) {
         node.classList.toggle('todo')
         node.classList.toggle(priority);
 
-        
         deleteButton.addEventListener('click', handleDelete)
         
         node.setAttribute('data-todo-id', element.id);
         node.setAttribute('data-project-id', element.projectId);
-        node.append(title, description, dueDate, creationDate, deleteButton);
-        todosContainer.appendChild(node);
+        node.append(title, description, creationDate, dueDate, deleteButton);
+        returnNodes.push(node);
     });
+    
+    return returnNodes
 }
-
-// Private //
 
 
 function handleDelete(e) {

@@ -31,10 +31,9 @@ class Project {
             values.title, 
             values.description, 
             values.dueDate, 
-            values.creationDate, 
             values.notes, 
-            0, 
             values.priority, 
+
             this.todoId, 
             this.id
             );
@@ -59,17 +58,62 @@ class Project {
     }
 }
 
+
+import { differenceInDays, differenceInHours, differenceInMinutes, differenceInMonths, differenceInWeeks } from 'date-fns';
+
 class Todo {
-    constructor(title, description, dueDate, creationDate, notes, state, priority, id, projectId) {
+    constructor(title, description, dueDate, notes, priority, id, projectId) {
         this.title = title; 
         this.description = description; 
         this.dueDate = dueDate;
-        this.creationDate = creationDate; 
+        this.creationDate = new Date();
         this.notes = notes; 
-        this.state = state; 
         this.priority = priority;
+
         this.id = id;
         this.projectId = projectId;
+    }
+
+    get createdAgo() {
+        // current changed for testing purpose
+        const current = new Date(2023, 9, 5);
+        const creation = this.creationDate;
+        console.log(current);
+        console.log(creation);
+
+        const minutes = differenceInMinutes(current, creation);
+        if(minutes < 2) {
+            return `Just now`
+        }
+        if(minutes < 60) {
+            return `${minutes} minutes ago`
+        }
+        
+        const hours = differenceInHours(current, creation);
+        if(hours < 24) {
+            if(hours === 1){
+                return `hour ago`
+            }
+            return `${hours} hours ago`
+        }
+
+        const days = differenceInDays(current, creation);
+        if(days < 31) {
+            if(days === 1) {
+                return 'Day ago'
+            }
+            return `${days} days ago`
+        }
+        
+        const months = differenceInMonths(current, creation);
+        if(months < 12) {
+            if(months === 1) {
+                return 'Month ago'
+            }
+            return `${months} months ago`
+        }
+        
+        return `More than 1 year ago`
     }
 }
 

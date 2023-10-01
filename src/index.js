@@ -19,7 +19,7 @@ const projects = ProjectLogic.getAllProjects();
 ProjectManager.addTodo({
     title: 'Title 1',
     description: 'Fine description', 
-    dueDate:'2023-12-12',
-    creationDate:"2000-05-01",
+    dueDate: new Date(2023, 9, 1),
+    notes: 'none',
     priority: 1
 });

@@ -22,10 +22,15 @@
 
     <div id="add-todo-form-wrapper" class="add-todo-form-wrapper">
         <form id="add-todo-form" class="add-todo-form">
+            <label for="todo-name">Title</label>
             <input type="text" name="todo-name" id="todo-name">
+            <label for="todo-description">Description</label>
             <input type="text" name="todo-description" id="todo-description">
+            <label for="todo-due-date">Due</label>
             <input type="date" name="todo-due-date" id="todo-due-date" value="2018-07-22">
+            <label for="todo-priority">Priority</label>
             <input type="range" name="todo-priority" id="todo-priority" min="0" max="2" value="0">
+            <label for="todo-notes">Notes</label>
             <textarea name="todo-notes" id="todo-notes" cols="30" rows="10" placeholder="Notes"></textarea>
             <button type="button" id="todo-submit">Submit</button>
         </form>
