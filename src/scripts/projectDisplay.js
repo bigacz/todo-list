@@ -89,8 +89,8 @@ function generate(todos) {
         
         title.textContent = element.title;
         description.textContent = element.description;
-        dueDate.textContent = element.dueDate;
-        creationDate.textContent = element.createdAgo;
+        dueDate.textContent = element.timeLeft;
+        creationDate.textContent = element.timeAgo;
         deleteButton.textContent = '✓';
 
         let priority;
