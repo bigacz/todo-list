@@ -14,6 +14,16 @@
     <div class="display">
         <div class="project-header">
             <h1 id="project-name">All</h1>
+            <form id="sort-form">
+                <label for="sort-type">Sort by:</label>
+                <select name="sort-type" id="sort-type">
+                    <option value="alphabetical">A-Z</option>
+                    <option value="priority">Priority</option>
+                    <option value="created">Created</option>
+                    <option value="due">Due</option>
+                </select>
+                <input type="checkbox" name="sort-order" id="sort-order">
+            </form>
             <button id="todo-activate" type="button">Add Todo</button>
         </div>
         <div id="todos-container">

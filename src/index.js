@@ -18,9 +18,42 @@ ProjectManager.addProject('trzy');
 const projects = ProjectLogic.getAllProjects();
 
 ProjectManager.addTodo({
-    title: 'Title 1',
+    title: 'Eeee',
     description: 'Fine description', 
-    dueDate: new Date(2024, 10),
+    dueDate: new Date(2027, 10),
     notes: 'none',
     priority: 1
 });
+
+ProjectManager.addTodo({
+    title: 'Aaaa',
+    description: 'Fine description', 
+    dueDate: new Date(2023, 10),
+    notes: 'none',
+    priority: 1
+});
+
+ProjectManager.addTodo({
+    title: 'Cccc',
+    description: 'Fine description', 
+    dueDate: new Date(2026, 10),
+    notes: 'none',
+    priority: 2
+});
+
+ProjectManager.addTodo({
+    title: 'Bbbb',
+    description: 'Fine description', 
+    dueDate: new Date(2021, 10),
+    notes: 'none',
+    priority: 0
+});
+
+ProjectManager.addTodo({
+    title: 'Ddddd',
+    description: 'Fine description', 
+    dueDate: new Date(2022, 10),
+    notes: 'none',
+    priority: 1
+});
+

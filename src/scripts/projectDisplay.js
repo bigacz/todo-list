@@ -1,4 +1,5 @@
 import ProjectLogic from './projectLogic';
+import sortTodos from './sortForm';
 import 'pubsub-js';
 
 const todosContainer = document.getElementById('todos-container');
@@ -6,6 +7,8 @@ const projectNameNode = document.getElementById('project-name');
 const projectContainer = document.getElementById('project-container');
 
 let currentProjectId = 1;
+
+PubSub.subscribe('sortForm', updateProject);
 
 function addProject(id, name) {
     const projectButton = document.createElement('button');
@@ -55,7 +58,8 @@ function updateProject() {
 // Private functions //
 
 function appendTodos(pretodos) {
-    let todos = [...pretodos]
+
+    let todos = sortTodos([...pretodos]);
     
     if(todos.length === 0) {
         const paragraph = document.createElement('p');
