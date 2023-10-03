@@ -1,3 +1,5 @@
+import { compareAsc } from 'date-fns';
+
 const formNode = document.getElementById('sort-form');
 const typeNode = document.getElementById('sort-type');
 const orderNode = document.getElementById('sort-order');
@@ -42,6 +44,12 @@ function getSortFunction() {
         case 'priority':
             modeFunction = priority;
             break
+        case 'due':
+            modeFunction = due;
+            break
+        case 'created':
+            modeFunction = created;
+            break
         default: 
             modeFunction = alphabetical
     }
@@ -56,8 +64,16 @@ function alphabetical(a, b) {
 }
 
 function priority(a, b) {
-    if(a.priority > b.priority) return 1
-    if(a.priority < b.priority) return -1
+    if(a.priority < b.priority) return 1
+    if(a.priority > b.priority) return -1
     return 0
+}
+
+function due(a, b) {
+    return compareAsc(a.dueDate, b.dueDate);
+}
+
+function created(a, b) {
+    return compareAsc(a.creationDate, b.creationDate)
 }
 export default sortTodos
