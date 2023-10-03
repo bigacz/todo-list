@@ -1,10 +1,8 @@
 import ProjectLogic from './projectLogic';
 import 'pubsub-js';
 
-
 const todosContainer = document.getElementById('todos-container');
 const projectNameNode = document.getElementById('project-name');
-
 const projectContainer = document.getElementById('project-container');
 
 let currentProjectId = 1;
@@ -70,9 +68,6 @@ function appendTodos(pretodos) {
     todoNodes.forEach((e) => {
         todosContainer.appendChild(e);
     })
-
-
-
 }
 
 // Private //
@@ -108,6 +103,12 @@ function generate(todos) {
         node.classList.toggle('todo')
         node.classList.toggle(priority);
 
+        node.addEventListener('click', (e) => {
+            if(e.target !== deleteButton) {
+                handleNodeClick(e)
+            }
+        })
+
         deleteButton.addEventListener('click', handleDelete)
         
         node.setAttribute('data-todo-id', element.id);
@@ -119,6 +120,14 @@ function generate(todos) {
     return returnNodes
 }
 
+
+function handleNodeClick(e) {
+    const node = e.currentTarget;
+    const projectId = node.getAttribute('data-project-id');
+    const todoId = node.getAttribute('data-todo-id');
+
+    PubSub.publish('todoClicked', { todoId, projectId });
+}
 
 function handleDelete(e) {
     const node = e.currentTarget.parentElement;

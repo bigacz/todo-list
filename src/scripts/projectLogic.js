@@ -1,3 +1,5 @@
+import { differenceInDays, differenceInHours, differenceInMinutes, differenceInMonths} from 'date-fns';
+
 class Project {
     constructor(title) {
         this.title = title;
@@ -58,9 +60,6 @@ class Project {
     }
 }
 
-
-import { differenceInDays, differenceInHours, differenceInMinutes, differenceInMonths} from 'date-fns';
-
 class Todo {
     constructor(title, description, dueDate, notes, priority, id, projectId) {
         this.title = title; 
@@ -74,9 +73,15 @@ class Todo {
         this.projectId = projectId;
     }
 
+    edit(values) {
+        const keys = Object.keys(values);
+        keys.forEach(key => {
+            this[key] = values[key];
+        })
+    }
+
     get timeAgo() {
-        // current changed for testing purpose
-        const current = new Date(2023, 9, 5);
+        const current = new Date();
         const creation = this.creationDate;
 
         const minutes = differenceInMinutes(current, creation);

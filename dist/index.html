@@ -27,7 +27,7 @@
             <label for="todo-description">Description</label>
             <input type="text" name="todo-description" id="todo-description">
             <label for="todo-due-date">Due</label>
-            <input type="date" name="todo-due-date" id="todo-due-date" value="2018-07-22">
+            <input type="date" name="todo-due-date" id="todo-due-date">
             <label for="todo-priority">Priority</label>
             <input type="range" name="todo-priority" id="todo-priority" min="0" max="2" value="0">
             <label for="todo-notes">Notes</label>
@@ -40,6 +40,18 @@
         <form id="add-project-form">
             <input type="text" name="add-project-form-name" id="add-project-form-name">
             <button type="button" id="project-submit">Submit</button>
+        </form>
+    </div>
+    
+    <div id="todo-view-wrapper" class="todo-view-wrapper">
+        <form id="todo-view" class="todo-view">
+            <h2 id="todo-view-title">Title</h2>
+            <p id="todo-view-description">Description</p>
+            <p id="todo-view-due-date">Due Date</p>
+            <p id="todo-view-creation-date">Creation date</p>
+            <textarea name="todo-view-notes" id="todo-view-notes" cols="30" rows="10"></textarea>
+            <p id="todo-view-priority">Priority</p>
+            <p id="todo-view-project">Project</p>
         </form>
     </div>
 </body>

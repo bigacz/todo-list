@@ -58,15 +58,20 @@ body {
 
 /* form */
 
-.add-todo-form-wrapper {
+.add-todo-form-wrapper, 
+.add-project-form-wrapper,
+.todo-view-wrapper {
     position: absolute;
     display: none;
     width: 100%;
     height: 100%;
 }
 
-.add-todo-form-wrapper.active {
+.add-todo-form-wrapper.active,
+.add-project-form-wrapper.active,
+.todo-view-wrapper.active {
     display: block;
+    background-color: black;
 }
 
 .add-todo-form {
@@ -80,18 +85,17 @@ body {
 
 /* todo view */
 
-.add-project-form-wrapper {
-    position: absolute;
-    display: none;
-    width: 100%;
-    height: 100%;
-}
-
-.add-project-form-wrapper.active {
-    display: block
-}
-
 .add-project-form-wrapper form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.todo-view {
     position: absolute;
     top: 50%;
     left: 50%;

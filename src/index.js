@@ -8,6 +8,7 @@ import ProjectLogic from './scripts/projectLogic';
 import AddProjectForm from './scripts/addProjectForm';
 import ProjectDisplay from './scripts/projectDisplay';
 import AddTodoForm from './scripts/addTodoForm';
+import todoView from './scripts/todoView';
 
 ProjectManager.addProject('zero');
 ProjectManager.addProject('raz'); 
