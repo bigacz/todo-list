@@ -1,7 +1,7 @@
 import PubSub from 'pubsub-js';
 import projectManager from './projectManager';
 
-const addButton = document.getElementById('project-activate');
+const addButton = document.getElementById('project-add-button');
 const formWrapper = document.getElementById('add-project-form-wrapper');
 const submitButton = document.getElementById('project-submit');
 
@@ -18,6 +18,7 @@ function handleSubmit() {
     const nameInput = document.getElementById('add-project-form-name');
     projectManager.addProject(nameInput.value);
     toggle();
+    nameInput.value = ''
 }
 
 function toggle() {

@@ -1,8 +1,9 @@
 import PubSub from 'pubsub-js';
-
 import ProjectLogic from './projectLogic';
 import ProjectDisplay from './projectDisplay';
 import addTodoForm from './addTodoForm';
+import storage from './storage';
+
 
 PubSub.subscribe('submitTodoForm', (msg, values) => {
     addTodo(values);
@@ -12,6 +13,16 @@ PubSub.subscribe('deleteTodo', (msg, data) => {
     removeTodo(data.projectId, data.todoId);
 })
 
+PubSub.subscribe('removeCurrentProject', removeCurrentProject);
+
+function removeCurrentProject() {
+    const projectId = ProjectDisplay.getCurrentProjectId();
+    if(projectId != 0) {
+        ProjectLogic.removeProject(projectId);
+        ProjectDisplay.removeProject(projectId);
+    }
+    ProjectDisplay.changeProject(0);
+}
 
 function addProject(title) {
     ProjectDisplay.addProject(ProjectLogic.projectId, title);

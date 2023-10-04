@@ -38,10 +38,12 @@ function clearInputs() {
 } 
 
 function getValues() {
+    const currentDate = new Date()
     return {
         title: formName.value,    
         description: formDescription.value,
         dueDate: formDueDate.valueAsDate,
+        creationDate: currentDate,
         priority: +formPriority.value,
         notes: formNotes.value
     }

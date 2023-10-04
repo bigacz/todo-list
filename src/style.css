@@ -60,6 +60,7 @@ body {
 
 .add-todo-form-wrapper, 
 .add-project-form-wrapper,
+.remove-project-form-wrapper,
 .todo-view-wrapper {
     position: fixed;
     display: none;
@@ -69,6 +70,7 @@ body {
 
 .add-todo-form-wrapper.active,
 .add-project-form-wrapper.active,
+.remove-project-form-wrapper.active, 
 .todo-view-wrapper.active {
     display: block;
     background-color: black;

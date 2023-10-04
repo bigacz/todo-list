@@ -5,10 +5,12 @@ import './scripts/projectManager'
 
 import ProjectManager from './scripts/projectManager';
 import ProjectLogic from './scripts/projectLogic';
-import AddProjectForm from './scripts/addProjectForm';
+import addProjectForm from './scripts/addProjectForm';
+import removeProjectform from './scripts/removeProjectForm';
 import ProjectDisplay from './scripts/projectDisplay';
 import AddTodoForm from './scripts/addTodoForm';
 import todoView from './scripts/todoView';
+
 
 ProjectManager.addProject('zero');
 ProjectManager.addProject('raz'); 
@@ -37,6 +39,7 @@ ProjectManager.addTodo({
     title: 'Cccc',
     description: 'Fine description', 
     dueDate: new Date(2026, 10),
+    creationDate: new Date(2022, 10),
     notes: 'none',
     priority: 2
 });

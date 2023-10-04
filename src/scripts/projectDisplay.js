@@ -10,6 +10,18 @@ let currentProjectId = 1;
 
 PubSub.subscribe('sortForm', updateProject);
 
+function removeProject(id) {
+    const projectButtons = Array.from(projectContainer.children);
+
+    const node = projectButtons.find((e) => {
+        const nodeId = e.getAttribute('data-id');
+        const result = +nodeId === +id;
+        return result
+    })
+
+    node.remove();
+}
+
 function addProject(id, name) {
     const projectButton = document.createElement('button');
     projectButton.textContent = name;
@@ -124,7 +136,6 @@ function generate(todos) {
     return returnNodes
 }
 
-
 function handleNodeClick(e) {
     const node = e.currentTarget;
     const projectId = node.getAttribute('data-project-id');
@@ -156,5 +167,6 @@ export default {
     addProject,
     changeProject,
     updateProject,
-    getCurrentProjectId
+    getCurrentProjectId,
+    removeProject
 };

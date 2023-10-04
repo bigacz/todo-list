@@ -15,6 +15,13 @@ class Project {
 
         Project.all.push(newProject);
     }
+    static removeProject(id) {
+        const projectIndex = this.all.findIndex((e) => +e.id === +id);
+
+        if(projectIndex >= 0) {
+            this.all.splice(projectIndex, 1)
+        }
+    }
     static getProject(id) {
         const projectIndex = Project.all.findIndex((e) => e.id === +id);
         
@@ -31,11 +38,11 @@ class Project {
         const newNote = 
         new Todo(
             values.title, 
-            values.description, 
+            values.description,
             values.dueDate, 
+            values.creationDate, 
             values.notes, 
             values.priority, 
-
             this.todoId, 
             this.id
             );
@@ -61,13 +68,13 @@ class Project {
 }
 
 class Todo {
-    constructor(title, description, dueDate, notes, priority, id, projectId) {
+    constructor(title, description, dueDate, creationDate, notes, priority, id, projectId) {
         this.title = title; 
         this.description = description; 
         this.dueDate = dueDate;
-        this.creationDate = new Date();
         this.notes = notes; 
         this.priority = priority;
+        this.creationDate = creationDate === undefined ? new Date() : creationDate;
 
         this.id = id;
         this.projectId = projectId;

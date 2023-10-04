@@ -76,4 +76,5 @@ function due(a, b) {
 function created(a, b) {
     return compareAsc(a.creationDate, b.creationDate)
 }
+
 export default sortTodos
