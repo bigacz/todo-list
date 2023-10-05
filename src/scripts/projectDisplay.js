@@ -6,7 +6,7 @@ const todosContainer = document.getElementById('todos-container');
 const projectNameNode = document.getElementById('project-name');
 const projectContainer = document.getElementById('project-container');
 
-let currentProjectId = 1;
+let currentProjectId = 0;
 
 PubSub.subscribe('sortForm', updateProject);
 

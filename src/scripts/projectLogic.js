@@ -4,13 +4,14 @@ class Project {
     constructor(title) {
         this.title = title;
         this.id = Project.projectId;
+        
         Project.projectId++;
     }
 
     static all = [];
     static projectId = 0;
     
-    static addProject(title) {
+    static addProject(title, projectId) {
         const newProject = new Project(title);
 
         Project.all.push(newProject);
@@ -29,6 +30,9 @@ class Project {
     }
     static getAllProjects() {
         return this.all;
+    }
+    static getLatestProject() {
+        return this.getProject(this.projectId - 1);
     }
 
     todoId = 0;
