@@ -11,10 +11,18 @@ const formPriority = document.getElementById('todo-priority');
 const formNotes = document.getElementById('todo-notes');
 const formSubmit = document.getElementById('todo-submit');
 
-formSubmit.addEventListener('click', () => {
-    PubSub.publish('submitTodoForm', getValues());
-    toggle();
-    clearInputs();
+const inputs = [formName, formDescription, formDueDate, formPriority, formNotes]
+
+formSubmit.addEventListener('click', (e) => {
+    if(checkValidity()) {
+        PubSub.publish('submitTodoForm', getValues());
+
+        toggle();
+        clearInputs();
+        
+        e.preventDefault();
+    }
+
 })
 
 formWrapper.addEventListener('click', (e) => {
@@ -30,12 +38,21 @@ function toggle() {
 }
 
 function clearInputs() {
-    const inputs = formNode.childNodes;
     inputs.forEach(e => {
         e.value = '';
     })
-
 } 
+
+function checkValidity() {
+    let returnValue = true;
+    inputs.forEach(e => {
+        if(!e.checkValidity()) {
+            returnValue = false;
+        }
+    })
+
+    return returnValue
+}
 
 function getValues() {
     const currentDate = new Date()

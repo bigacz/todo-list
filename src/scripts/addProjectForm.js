@@ -14,11 +14,15 @@ formWrapper.addEventListener('click', (e) => {
 
 submitButton.addEventListener('click', handleSubmit)
 
-function handleSubmit() {
+function handleSubmit(event) {
     const nameInput = document.getElementById('add-project-form-name');
-    projectManager.addProject(nameInput.value);
-    toggle();
-    nameInput.value = ''
+    
+    if(nameInput.checkValidity()) {
+        event.preventDefault();
+        projectManager.addProject(nameInput.value);
+        toggle();
+        nameInput.value = ''
+    }
 }
 
 function toggle() {

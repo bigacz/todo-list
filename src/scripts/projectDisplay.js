@@ -94,8 +94,10 @@ function generate(todos) {
         const node = document.createElement('div');
         const title = document.createElement('h2');
         const description = document.createElement('p');
+        description.classList.add('todo-description');
         const creationDate = document.createElement('span');
         const dueDate = document.createElement('span');
+        dueDate.classList.add('todo-due-date');
         const deleteButton = document.createElement('button');
         
         title.textContent = element.title;
@@ -129,7 +131,7 @@ function generate(todos) {
         
         node.setAttribute('data-todo-id', element.id);
         node.setAttribute('data-project-id', element.projectId);
-        node.append(title, description, creationDate, dueDate, deleteButton);
+        node.append(title, dueDate, description, creationDate, deleteButton);
         returnNodes.push(node);
     });
     

@@ -44,9 +44,6 @@ function submit() {
     const notes = viewNotes.value;
 
     todo.edit({notes});
-
-
-    console.log(ProjectLogic.getAllProjects());
 }
 
 function changeValues(valuesObject) {

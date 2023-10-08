@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -8,11 +9,21 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     devtool: 'inline-source-map',
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Todo List',
+            template: './src/index.html',
+            inject: 'body'
+        })
+    ],
     module: {
         rules: [
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    'style-loader', 
+                    'css-loader'
+                ],
             },
         ],
     },

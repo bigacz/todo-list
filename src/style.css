@@ -1,7 +1,16 @@
+@font-face {
+    font-family: Poppins-Medium;
+    src: url(./fonts/Poppins-Medium.ttf);
+}
+
+:root {
+    --white: #f0f0f0;
+}
+
 /* Temporary */
 
 h1, h2, p, span, header, label {
-    color: white;
+    color: var(--white)
 }
 
 /* */
@@ -16,16 +25,27 @@ body {
     "sidebar display";
     grid-template-columns: 20vw 1fr;
     grid-template-rows: 10vh 1fr;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .header {
     grid-area: header;
+    border-bottom: 4px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
 }
 
 .sidebar {
     grid-area: sidebar;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 100px;
+    grid-auto-rows: 50px;
+}
+
+.sidebar :first-child {
+    background-color: yellow;
 }
 
 .display {
@@ -39,9 +59,44 @@ body {
     align-items: center;
 }
 
-.todo {
-    border: 5px solid;
+.todos-container {
+    padding: 0.5rem;
     display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 400px));
+    grid-auto-rows: 250px;
+}
+
+.todo {
+
+    padding: 1rem;
+    background-color: rgb(57, 57, 58);
+    border-bottom: 5px solid;
+    border-radius: 7px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2rem 1fr 2rem;
+    align-items: center;
+}
+
+.todo-description {
+    align-self: baseline;
+    grid-column: 1 / 3;
+}
+
+.todo-due-date {
+    justify-self: end;
+}
+
+.todo button {
+    width: 2rem;
+    height: 2rem;
+    justify-self: end;
+}
+
+.todo h2 {
+    padding: 0;
+    margin: 0;
 }
 
 .todo.low {
@@ -56,52 +111,16 @@ body {
     border-color: red;
 }
 
-/* form */
-
-.add-todo-form-wrapper, 
-.add-project-form-wrapper,
-.remove-project-form-wrapper,
-.todo-view-wrapper {
+.popup-window {
     position: fixed;
     display: none;
     width: 100%;
     height: 100%;
 }
 
-.add-todo-form-wrapper.active,
-.add-project-form-wrapper.active,
-.remove-project-form-wrapper.active, 
-.todo-view-wrapper.active {
-    display: block;
+.popup-window.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: black;
-}
-
-.add-todo-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-}
-
-/* todo view */
-
-.add-project-form-wrapper form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-
-}
-
-.todo-view {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
 }

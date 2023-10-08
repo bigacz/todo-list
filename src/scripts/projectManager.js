@@ -28,7 +28,6 @@ function loadProjects() {
         ProjectLogic.addProject(e.title);
 
         const latestProject = ProjectLogic.getLatestProject();
-        console.log(latestProject);
 
         const todos = e.todos;
         todos.forEach((e) => {
