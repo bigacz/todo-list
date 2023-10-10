@@ -1,4 +1,4 @@
-<!DOCTYPE html>g
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,8 +16,7 @@
     <div class="display">
         <div class="project-header">
             <h1 id="project-name">All</h1>
-            <button id="todo-activate" type="button">+</button>
-            <form id="sort-form">
+            <form id="sort-form" class="sort-form">
                 <label for="sort-type">Sort by:</label>
                 <select name="sort-type" id="sort-type">
                     <option value="alphabetical">A-Z</option>
@@ -25,9 +24,10 @@
                     <option value="created">Created</option>
                     <option value="due">Due</option>
                 </select>
-                <input type="checkbox" name="sort-order" id="sort-order">
+                <input type="checkbox" name="sort-order" id="sort-order" class="sort-order">
             </form>
-            <button id="remove-project-button" type="button">Delete Project</button>
+            <button id="todo-activate" class="add-todo-button" type="button">Add Todo</button>
+            <button id="remove-project-button" type="button" class="remove-project-button">Delete Project</button>
         </div>
         <div id="todos-container" class="todos-container">
             <p>No Todos!</p>
@@ -43,7 +43,7 @@
                 </li>
                 <li>
                     <label for="todo-description">Description</label>
-                    <input type="text" name="todo-description" id="todo-description" required>
+                    <input type="text" name="todo-description" id="todo-description" maxlength="150" required>
                 </li>
                 <li>
                     <label for="todo-due-date">Due</label>

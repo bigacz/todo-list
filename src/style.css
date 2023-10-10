@@ -4,20 +4,31 @@
 }
 
 :root {
-    --white: #f0f0f0;
-}
+    --fs-1000: 5rem;
+    --fs-900: 3rem;
+    --fs-800: 2rem;
+    --fs-700: 1.5rem;
+    --fs-600: 1.2rem;
 
-/* Temporary */
+    --black: #171c24;
+    --dark-gray: #222831;
+    --gray: #393E46;
+    --light-gray: #414857;
+    --light-blue: #4e505e;
+    --orange: #D65A31;
+    --white: #EEEEEE;
+    --green: #07cc03;
+    --red: #df021c;
+    --yellow: #f1d101;
+}
 
 h1, h2, p, span, header, label {
     color: var(--white)
 }
 
-/* */
-
 body {
     position: relative;
-    background-color: rgb(29, 28, 28);
+    background-color: var(--dark-gray);
     display: grid;
     height: 100vh;
     grid-template-areas:  
@@ -25,57 +36,139 @@ body {
     "sidebar display";
     grid-template-columns: 20vw 1fr;
     grid-template-rows: 10vh 1fr;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins-Medium'
 }
 
 .header {
     grid-area: header;
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid var(--white);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
 }
 
+.header h1 {
+    font-size: var(--fs-800);
+}
+
 .sidebar {
+    background-color: var(--black);
     grid-area: sidebar;
     display: grid;
     grid-template-rows: 100px;
     grid-auto-rows: 50px;
+    gap: 0.7rem;
+    padding: 1rem 0.5rem;
+}
+
+.sidebar button {
+    border-radius: 5px;
+    border: none;
+    background-color: var(--light-gray);
+    color: var(--white);
 }
 
 .sidebar :first-child {
-    background-color: yellow;
+    font-size: var(--fs-700);
+    background-color: var(--light-blue);
+    font-weight: 600;
+}
+
+.sidebar :first-child::before {
+    content: "+ ";
 }
 
 .display {
     grid-area: display;
 }
 
+.remove-project-button, .add-todo-button {
+    border: none;
+    padding: 1rem; 
+    border-radius: 5px;
+    font-weight: 600;
+    color: var(--white);
+    border: 4px solid;  
+    background-color: var(--dark-gray);
+    transition: background-color 0.2s;
+}
+
+.add-todo-button {
+    border-color: var(--green);
+}
+
+.add-todo-button:hover {
+    background-color: var(--green);
+}
+
+.remove-project-button {
+    border-color: var(--red);
+}
+
+.remove-project-button:hover {
+    background-color: var(--red);
+}
+
 .project-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 0 2rem;
     justify-content: space-between;
     align-items: center;
+    justify-items: center;
 }
+
+.sort-form {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    align-items: center;
+}
+
+.sort-form label {
+    padding-right: 0.5em;
+}
+
+.sort-order {
+    height: 1.8em;
+    width: 1.8em;
+    appearance: none;
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    border-radius: 3px;
+    place-content: center;
+    display: grid;
+    place-content: center;
+}
+
+.sort-order::before {
+    content: url(images/arrow-up.svg);
+    height: 1.8em;
+    width: 1.8em;
+}
+
+.sort-order:checked::before {
+    content: url(images/arrow-down.svg);
+}
+
 
 .todos-container {
     padding: 0.5rem;
     display: grid;
     gap: 0.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 400px));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-auto-rows: 250px;
 }
 
 .todo {
-
     padding: 1rem;
-    background-color: rgb(57, 57, 58);
-    border-bottom: 5px solid;
+    background-color: var(--gray);
+    border-bottom: 7px solid;
     border-radius: 7px;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 2rem 1fr 2rem;
+    grid-template-rows: max-content 1fr 2rem;
     align-items: center;
 }
 
@@ -85,6 +178,7 @@ body {
 }
 
 .todo-due-date {
+    align-self: start;
     justify-self: end;
 }
 
@@ -92,6 +186,19 @@ body {
     width: 2rem;
     height: 2rem;
     justify-self: end;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--dark-gray);
+    color: var(--white);
+    font-weight: 700;
+}
+
+.todo button:hover {
+    transition: all 0.3s;
+    background-color: var(--green);
+    -webkit-box-shadow: 0px 0px 24px -5px var(--green);
+    -moz-box-shadow: 0px 0px 24px -5px var(--green);
+    box-shadow: 0px 0px 24px -5px var(--green);
 }
 
 .todo h2 {
@@ -100,15 +207,15 @@ body {
 }
 
 .todo.low {
-    border-color: green;
+    border-color: var(--green)
 }
 
 .todo.medium {
-    border-color: yellow;
+    border-color: var(--yellow);
 }
 
 .todo.high {
-    border-color: red;
+    border-color: var(--red);
 }
 
 .popup-window {
