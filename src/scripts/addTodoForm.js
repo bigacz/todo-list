@@ -13,6 +13,8 @@ const formSubmit = document.getElementById('todo-submit');
 
 const inputs = [formName, formDescription, formDueDate, formPriority, formNotes]
 
+formPriority.addEventListener('input', handlePriorityChange);
+
 formSubmit.addEventListener('click', (e) => {
     if(checkValidity()) {
         PubSub.publish('submitTodoForm', getValues());
@@ -22,7 +24,6 @@ formSubmit.addEventListener('click', (e) => {
         
         e.preventDefault();
     }
-
 })
 
 formWrapper.addEventListener('click', (e) => {
@@ -65,5 +66,30 @@ function getValues() {
         notes: formNotes.value
     }
 }
+
+function handlePriorityChange() {
+    const value = +formPriority.value;
+
+    let priority;
+    switch(value) {
+        case 0: 
+            priority = 'low';
+            break;
+        case 1: 
+            priority = 'medium';
+            break;
+        case 2: 
+            priority = 'high';
+            break;
+    }
+
+    const priorities = ['low', 'medium', 'high']
+    priorities.forEach(e => {
+        formPriority.classList.remove(e);
+    })
+
+    
+    formPriority.classList.add(priority);
+} 
 
 export default {toggle}

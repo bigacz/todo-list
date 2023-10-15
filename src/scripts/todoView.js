@@ -79,4 +79,5 @@ function changeValues(valuesObject) {
     viewNotes.value = valuesObject.notes;
 }
 
+
 export default {}

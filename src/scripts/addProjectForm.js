@@ -29,4 +29,6 @@ function toggle() {
     formWrapper.classList.toggle('active');
 }
 
+toggle();
+
 export default {toggle}
