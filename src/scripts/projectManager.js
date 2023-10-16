@@ -4,6 +4,7 @@ import ProjectDisplay from './projectDisplay';
 import addTodoForm from './addTodoForm';
 import storage from './projectStorage';
 import projectStorage from './projectStorage';
+import Project from './projectLogic';
 
 window.addEventListener('DOMContentLoaded', loadProjects);
 
@@ -77,6 +78,7 @@ function removeTodo(projectId, todoId) {
     project.deleteTodo(+todoId);
 
     updateStorage()
+    ProjectDisplay.updateProject();
 }
 
 // Private functions //

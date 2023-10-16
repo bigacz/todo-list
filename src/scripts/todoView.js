@@ -3,17 +3,27 @@ import ProjectLogic from './projectLogic';
 import { formatISO, lightFormat } from 'date-fns';
 
 const viewWrapper = document.getElementById('todo-view-wrapper');
+const form = document.getElementById('todo-view');
 
 const viewTitle = document.getElementById('todo-view-title');
 const viewDescription = document.getElementById('todo-view-description');
 const viewDueDate = document.getElementById('todo-view-due-date');
 const viewCreationDate = document.getElementById('todo-view-creation-date');
 const viewNotes = document.getElementById('todo-view-notes');
-const viewPriority = document.getElementById('todo-view-priority');
 const viewProject = document.getElementById('todo-view-project');
+
+const exitButton = document.getElementById('todo-view-exit');
+const deleteButton = document.getElementById('todo-view-delete');
 
 let cacheProjectId;
 let cacheTodoId;
+
+deleteButton.addEventListener('click', () => {
+    handleDelete();
+    toggle();
+})
+
+exitButton.addEventListener('click', toggle);
 
 PubSub.subscribe('todoClicked', (msg, values) => {
     cacheProjectId = values.projectId;
@@ -60,24 +70,35 @@ function changeValues(valuesObject) {
         'Not specified';
     viewCreationDate.textContent = `Created: ${creationDate}`
 
-    let priorityText;
+    let priorityClass;
     switch(valuesObject.priority) {
         case 0:
-            priorityText = 'Low';
+            priorityClass = 'low';
             break;
         case 1:
-            priorityText = 'Medium';
+            priorityClass = 'medium';
             break;
         case 2:
-            priorityText = 'High';
+            priorityClass = 'high';
             break;
-        }
-    viewPriority.textContent = `Priority ${priorityText}`
+    }
+
+    const priorities = ['low', 'medium', 'high']
+    priorities.forEach(e => {
+        form.classList.remove(e);
+    })
+    form.classList.add(priorityClass);
     
     viewProject.textContent = `Project: ${valuesObject.project}`
     
     viewNotes.value = valuesObject.notes;
 }
 
+function handleDelete() {
+    PubSub.publishSync('deleteTodo', {
+        projectId: cacheProjectId,
+        todoId: cacheTodoId
+    });
+}
 
 export default {}

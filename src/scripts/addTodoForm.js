@@ -3,6 +3,7 @@ import PubSub from 'pubsub-js';
 const formWrapper = document.getElementById('add-todo-form-wrapper');
 const formNode = document.getElementById('add-todo-form');
 const activateButton = document.getElementById('todo-activate');
+const exitButton = document.getElementById('todo-exit');
 
 const formName = document.getElementById('todo-name');
 const formDescription = document.getElementById('todo-description');
@@ -11,7 +12,12 @@ const formPriority = document.getElementById('todo-priority');
 const formNotes = document.getElementById('todo-notes');
 const formSubmit = document.getElementById('todo-submit');
 
-const inputs = [formName, formDescription, formDueDate, formPriority, formNotes]
+const inputs = [formName, formDescription, formDueDate, formNotes];
+
+exitButton.addEventListener('click', () => {
+    toggle();
+    clearInputs();
+})
 
 formPriority.addEventListener('input', handlePriorityChange);
 
@@ -42,6 +48,10 @@ function clearInputs() {
     inputs.forEach(e => {
         e.value = '';
     })
+
+    formPriority.value = 0;
+
+    handlePriorityChange();
 } 
 
 function checkValidity() {
@@ -88,7 +98,6 @@ function handlePriorityChange() {
         formPriority.classList.remove(e);
     })
 
-    
     formPriority.classList.add(priority);
 } 
 

@@ -136,7 +136,7 @@ class Todo {
     
         const minutes = differenceInMinutes(dueDate, current);
         if(minutes <= 0) {
-            return `Overdue !`
+            return `Overdue!`
         }
         if(minutes == 1) {
             return `Minute left`

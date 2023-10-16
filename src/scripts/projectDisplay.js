@@ -102,7 +102,12 @@ function generate(todos) {
         
         title.textContent = element.title;
         description.textContent = element.description;
-        dueDate.textContent = element.timeLeft;
+
+        const timeLeft = element.timeLeft;
+        dueDate.textContent = timeLeft
+        if(timeLeft === 'Overdue!') {
+            dueDate.classList.add('text-red-bold');
+        }
         creationDate.textContent = element.timeAgo;
         deleteButton.textContent = '✓';
 

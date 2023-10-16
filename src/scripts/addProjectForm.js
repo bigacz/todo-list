@@ -4,6 +4,14 @@ import projectManager from './projectManager';
 const addButton = document.getElementById('project-add-button');
 const formWrapper = document.getElementById('add-project-form-wrapper');
 const submitButton = document.getElementById('project-submit');
+const exitButton = document.getElementById('project-exit');
+const nameInput = document.getElementById('add-project-form-name');
+
+
+exitButton.addEventListener('click', () => {
+    toggle();
+    clearInput();
+})
 
 addButton.addEventListener('click', toggle);
 formWrapper.addEventListener('click', (e) => {
@@ -15,13 +23,12 @@ formWrapper.addEventListener('click', (e) => {
 submitButton.addEventListener('click', handleSubmit)
 
 function handleSubmit(event) {
-    const nameInput = document.getElementById('add-project-form-name');
     
     if(nameInput.checkValidity()) {
         event.preventDefault();
         projectManager.addProject(nameInput.value);
         toggle();
-        nameInput.value = ''
+        clearInput();
     }
 }
 
@@ -29,6 +36,8 @@ function toggle() {
     formWrapper.classList.toggle('active');
 }
 
-toggle();
+function clearInput() {
+    nameInput.value = '';
+}
 
 export default {toggle}

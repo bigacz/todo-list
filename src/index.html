@@ -38,7 +38,7 @@
         <form id="add-todo-form" class="add-todo-form">
             <ul>
                 <li>
-                    <input type="text" name="todo-name" id="todo-name" maxlength="12" required spellcheck="false">
+                    <input type="text" name="todo-name" id="todo-name" maxlength="35" required spellcheck="false">
                     <label for="todo-name">Title</label>
                 </li>
                 <li>
@@ -46,7 +46,7 @@
                     <label for="todo-description">Description</label>
                 </li>
                 <li>
-                    <textarea name="todo-notes" id="todo-notes" cols="30" rows="10" spellcheck="false" maxlength="100"></textarea>
+                    <textarea name="todo-notes" id="todo-notes" spellcheck="false" maxlength="200"></textarea>
                     <label for="todo-notes">Notes</label>
                 </li>
                 <li>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="buttons-container">
                     <button type="submit" id="todo-submit">Add Todo</button>
-                    <button id="todo-exit" class="exit-button">Exit</button>
+                    <button type="button" id="todo-exit" class="exit-button">Exit</button>
                 </li>
             </ul>
         </form>
@@ -74,7 +74,7 @@
                 </li>
                 <li class="buttons-container">
                     <button type="submit" id="project-submit">Add project</button>
-                    <button id="project-exit" class="exit-button">Exit</button>
+                    <button type="button" id="project-exit" class="exit-button">Exit</button>
                 </li>
             </ul>
             
@@ -83,15 +83,30 @@
     
     <div id="todo-view-wrapper" class="popup-window">
         <form id="todo-view" class="todo-view">
-            <h2 id="todo-view-title">Title</h2>
-            <p id="todo-view-description">Description</p>
-            <textarea name="todo-view-notes" id="todo-view-notes" spellcheck="false"></textarea>
-            <p id="todo-view-creation-date">Creation date</p>
-            <p id="todo-view-due-date">Due Date</p>
-            <p id="todo-view-priority">Priority</p>
-            <p id="todo-view-project">Project</p>
-            <button id="todo-view-exit" class="exit-button">Exit</button>
-            <button type="button" id=""></button>
+            <ul>
+                <li>
+                    <h2 id="todo-view-title">Title</h2>
+                </li>
+                <li>
+                    <p id="todo-view-description">Description</p>
+                </li>
+                <li>
+                    <textarea name="todo-view-notes" id="todo-view-notes" spellcheck="false"></textarea>
+                    <label for="todo-view-notes">Notes</label>
+                </li>
+                <li class="buttons-container">
+                    <p id="todo-view-creation-date">Creation date</p>
+                    <p id="todo-view-due-date">Due Date</p>
+                </li>
+
+                <li>
+                    <p id="todo-view-project">Project</p>
+                </li>
+                <li class="buttons-container">
+                    <button type="button" id="todo-view-exit" class="exit-button">Exit</button>
+                    <button type="button" id="todo-view-delete" class="todo-view-delete">✓</button>
+                </li>
+            </ul>
         </form>
     </div>
 
