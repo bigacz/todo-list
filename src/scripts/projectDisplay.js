@@ -74,9 +74,9 @@ function appendTodos(pretodos) {
     let todos = sortTodos([...pretodos]);
     
     if(todos.length === 0) {
-        const paragraph = document.createElement('p');
-        paragraph.textContent = 'No todos!'
-        todosContainer.appendChild(paragraph);
+        const header = document.createElement('h2');
+        header.textContent = 'No todos!'
+        todosContainer.appendChild(header);
 
         return
     }
