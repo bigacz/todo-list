@@ -19,16 +19,39 @@
     --fs-600: 1.2rem;
     --fs-500: 1rem;
 
-    --black: #171c24;
-    --dark-gray: #222831;
-    --gray: #393E46;
-    --light-gray: #414857;
-    --light-blue: #4e505e;
-    --orange: #D65A31;
-    --white: #EEEEEE;
     --green: #07cc03;
     --red: #df021c;
     --yellow: #f1d101;
+
+    --white: #EEEEEE;
+    --black: #3A3A3A;
+
+}
+
+.dark {
+    --text-color: #EEEEEE;
+    --text-color-alternate: #171c24;
+    --background1: #222831;
+    --background2: #393E46;
+    --background3: #414857;
+    --background4: #4e505e;
+}
+
+.light {
+    --text-color: #202020;
+    --text-color-alternate: #FFFFFF;
+    --background1: #F0F0F0;
+    --background2: #E6E6E6;
+    --background3: #D8D8D8;
+    --background4: #CACACA;
+}
+
+html.dark input {
+    color-scheme: dark;
+}
+
+html.light input {
+    color-scheme: light;
 }
 
 input[type="range"] {
@@ -39,7 +62,7 @@ input[type="range"] {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-    background-color: var(--priority-color, --dark-gray);
+    background-color: var(--priority-color, --background1);
     border-radius: 5px;
     height: 0.5rem;
     width: 100%;
@@ -47,7 +70,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 input[type="range"]::-moz-range-track {
-    background: var(--priority-color, --dark-gray);
+    background: var(--priority-color, --background1);
     border-radius: 5px;
     height: 0.5rem;
 }
@@ -56,14 +79,10 @@ input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
     margin-top: -6px;
-    background-color: var(--white);
+    background-color: var(--text-color);
     height: 1.3rem;
     width: 1.3rem;
     border-radius: 100px;
-}
-
-input {
-    color-scheme: dark;
 }
 
 input:-webkit-autofill,
@@ -75,9 +94,9 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-text-fill-color: var(--white);
-    color: var(--white);
-    -webkit-box-shadow: 0 0 0px 1000px var(--black)inset;
+    -webkit-text-fill-color: var(--text-color);
+    color: var(--text-color);
+    -webkit-box-shadow: 0 0 0px 1000px var(--text-color-alternate)inset;
     transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -86,12 +105,12 @@ textarea {
 }
 
 h1, h2, p, span, header, label {
-    color: var(--white)
+    color: var(--text-color)
 }
 
 body {
     position: relative;
-    background-color: var(--dark-gray);
+    background-color: var(--background1);
     display: grid;
     height: 100vh;
     grid-template-areas:  
@@ -104,7 +123,7 @@ body {
 
 .header {
     grid-area: header;
-    border-bottom: 4px solid var(--white);
+    border-bottom: 3px solid var(--text-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -116,7 +135,7 @@ body {
 }
 
 .sidebar {
-    background-color: var(--black);
+    background-color: var(--text-color-alternate);
     grid-area: sidebar;
     display: grid;
     grid-template-rows: 100px;
@@ -128,13 +147,13 @@ body {
 .sidebar button {
     border-radius: 5px;
     border: none;
-    background-color: var(--light-gray);
-    color: var(--white);
+    background-color: var(--background3);
+    color: var(--text-color);
 }
 
 .sidebar :first-child {
     font-size: var(--fs-700);
-    background-color: var(--light-blue);
+    background-color: var(--background4);
     font-weight: 600;
 }
 
@@ -152,25 +171,30 @@ body {
     border-radius: 5px;
     font-weight: 600;
     color: var(--white);
-    border: 4px solid;  
-    background-color: var(--dark-gray);
-    transition: background-color 0.2s ease-in;
+    background-color: var(--background1);
+
+
 }
 
 .add-todo-button {
-    border-color: var(--green);
-}
-
-.add-todo-button:hover {
     background-color: var(--green);
 }
 
+.add-todo-button:hover {
+    -webkit-box-shadow: 0px 0px 24px -5px var(--green);
+    -moz-box-shadow: 0px 0px 24px -5px var(--green);
+    box-shadow: 0px 0px 24px -5px var(--green);
+}
+
 .remove-project-button {
-    border-color: var(--red);
+    background-color: var(--red);
 }
 
 .remove-project-button:hover {
-    background-color: var(--red);
+    -webkit-box-shadow: 0px 0px 24px -5px var(--red);
+    -moz-box-shadow: 0px 0px 24px -5px var(--red);
+    box-shadow: 0px 0px 24px -5px var(--red);
+
 }
 
 .project-header {
@@ -193,13 +217,26 @@ body {
     padding-right: 0.5em;
 }
 
+.sort-type,
 .sort-order {
-    height: 1.8em;
-    width: 1.8em;
-    appearance: none;
+    height: 1.7rem;
     background-color: var(--white);
     border: 2px solid var(--black);
     border-radius: 3px;
+}
+
+.sort-type:focus {
+    outline: none;
+}
+
+.sort-type {
+    border-right: none;
+}
+
+.sort-order {
+
+    width: auto;
+    appearance: none;
     place-content: center;
     display: grid;
     place-content: center;
@@ -207,8 +244,8 @@ body {
 
 .sort-order::before {
     content: url(images/arrow-up.svg);
-    height: 1.8em;
-    width: 1.8em;
+    height: 1.7em;
+    width: 1.7em;
 }
 
 .sort-order:checked::before {
@@ -226,7 +263,7 @@ body {
 .todo {
     word-break: break-word;
     padding: 1rem;
-    background-color: var(--gray);
+    background-color: var(--background2);
     border-bottom: 7px solid;
     border-radius: 7px;
     display: grid;
@@ -307,7 +344,7 @@ body {
 
 .popup-window > * {
     border-radius: 15px;
-    background-color: var(--black);
+    background-color: var(--text-color-alternate);
     padding: 3rem;
     -webkit-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 1);
     -moz-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 1);
@@ -324,9 +361,9 @@ body {
 .popup-window input[type="text"],
 .popup-window input[type="date"],
 .popup-window textarea {
-    background-color: var(--black);
-    border: 2px solid var(--white);
-    color: var(--white);
+    background-color: var(--text-color-alternate);
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
     width: 100%;
 }
 
@@ -349,7 +386,7 @@ body {
 .popup-window input[type="text"] + label,
 .popup-window input[type="date"] + label,
 .popup-window textarea + label {
-    background-color: var(--black);
+    background-color: var(--text-color-alternate);
     position: absolute;
     padding: 0 0.3rem;
 }
@@ -371,6 +408,7 @@ body {
 }
 
 .popup-window button {
+    color: var(--white);
     border: none;
     border-radius: 5px;
     padding: 0.75rem 1.5rem;
@@ -378,7 +416,6 @@ body {
 
 .popup-window button[type="submit"] {
     background-color: var(--green);
-    color: var(--white);
 }
 
 .popup-window button[type="submit"]:hover {
@@ -449,7 +486,6 @@ body {
 }
 
 .exit-button {
-    color: var(--white);
     background-color: var(--red);
 }
 

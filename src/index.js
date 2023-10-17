@@ -10,3 +10,4 @@ import removeProjectform from './scripts/removeProjectForm';
 import ProjectDisplay from './scripts/projectDisplay';
 import AddTodoForm from './scripts/addTodoForm';
 import todoView from './scripts/todoView';
+import darkMode from './scripts/darkMode';

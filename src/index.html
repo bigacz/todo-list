@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 <body>
     <header class="header">
         <h1>Todo List</h1>
-        <input type="checkbox" name="darkmode-checkbox" id="darkmode-checkbox" class="darkmode-checkbox">
+        <input type="checkbox" name="darkmode-checkbox" id="darkmode-checkbox" class="darkmode-checkbox" checked>
     </header>
     <div class="sidebar" id="project-container">
         <button type="button" id="project-add-button">New Project</button>
@@ -18,7 +18,7 @@
             <h1 id="project-name">All</h1>
             <form id="sort-form" class="sort-form">
                 <label for="sort-type">Sort by:</label>
-                <select name="sort-type" id="sort-type">
+                <select name="sort-type" id="sort-type" class="sort-type">
                     <option value="alphabetical">A-Z</option>
                     <option value="priority">Priority</option>
                     <option value="created">Created</option>
