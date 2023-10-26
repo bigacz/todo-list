@@ -1,123 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <h1>Todo List</h1>
-        <input type="checkbox" name="darkmode-checkbox" id="darkmode-checkbox" class="darkmode-checkbox" checked>
+      <h1>Todo List</h1>
+      <input
+        type="checkbox"
+        name="darkmode-checkbox"
+        id="darkmode-checkbox"
+        class="darkmode-checkbox"
+        checked
+      />
     </header>
     <div class="sidebar" id="project-container">
-        <button type="button" id="project-add-button">New Project</button>
+      <button type="button" id="project-add-button">New Project</button>
     </div>
     <div class="display">
-        <div class="project-header">
-            <h1 id="project-name">All</h1>
-            <form id="sort-form" class="sort-form">
-                <label for="sort-type">Sort by:</label>
-                <select name="sort-type" id="sort-type" class="sort-type">
-                    <option value="alphabetical">A-Z</option>
-                    <option value="priority">Priority</option>
-                    <option value="created">Created</option>
-                    <option value="due">Due</option>
-                </select>
-                <input type="checkbox" name="sort-order" id="sort-order" class="sort-order">
-            </form>
-            <button id="todo-activate" class="add-todo-button" type="button">Add Todo</button>
-            <button id="remove-project-button" type="button" class="remove-project-button">Delete Project</button>
-        </div>
-        <div id="todos-container" class="todos-container">
-            <h2>No Todos!</h2>
-        </div>
+      <div class="project-header">
+        <h1 id="project-name">All</h1>
+        <form id="sort-form" class="sort-form">
+          <label for="sort-type">Sort by:</label>
+          <select name="sort-type" id="sort-type" class="sort-type">
+            <option value="alphabetical">A-Z</option>
+            <option value="priority">Priority</option>
+            <option value="created">Created</option>
+            <option value="due">Due</option>
+          </select>
+          <input
+            type="checkbox"
+            name="sort-order"
+            id="sort-order"
+            class="sort-order"
+          />
+        </form>
+        <button id="todo-activate" class="add-todo-button" type="button">
+          Add Todo
+        </button>
+        <button
+          id="remove-project-button"
+          type="button"
+          class="remove-project-button"
+        >
+          Delete Project
+        </button>
+      </div>
+      <div id="todos-container" class="todos-container">
+        <h2>No Todos!</h2>
+      </div>
     </div>
 
     <div id="add-todo-form-wrapper" class="popup-window">
-        <form id="add-todo-form" class="add-todo-form">
-            <ul>
-                <li>
-                    <input type="text" name="todo-name" id="todo-name" maxlength="35" required spellcheck="false">
-                    <label for="todo-name">Title</label>
-                </li>
-                <li>
-                    <input type="text" name="todo-description" id="todo-description" maxlength="100" required spellcheck="false">
-                    <label for="todo-description">Description</label>
-                </li>
-                <li>
-                    <textarea name="todo-notes" id="todo-notes" spellcheck="false" maxlength="200"></textarea>
-                    <label for="todo-notes">Notes</label>
-                </li>
-                <li>
-                    <input type="date" name="todo-due-date" id="todo-due-date" required spellcheck="false">
-                    <label for="todo-due-date">Due</label>
-                </li>
-                <li>
-                    <label for="todo-priority">Priority</label>
-                    <input type="range" name="todo-priority" id="todo-priority" class="add-todo-form-priority low" min="0" max="2" value="0" required spellcheck="false">
-                </li>
-                <li class="buttons-container">
-                    <button type="submit" id="todo-submit">Add Todo</button>
-                    <button type="button" id="todo-exit" class="exit-button">Exit</button>
-                </li>
-            </ul>
-        </form>
+      <form id="add-todo-form" class="add-todo-form">
+        <ul>
+          <li>
+            <input
+              type="text"
+              name="todo-name"
+              id="todo-name"
+              maxlength="35"
+              required
+              spellcheck="false"
+            />
+            <label for="todo-name">Title</label>
+          </li>
+          <li>
+            <input
+              type="text"
+              name="todo-description"
+              id="todo-description"
+              maxlength="100"
+              required
+              spellcheck="false"
+            />
+            <label for="todo-description">Description</label>
+          </li>
+          <li>
+            <textarea
+              name="todo-notes"
+              id="todo-notes"
+              spellcheck="false"
+              maxlength="200"
+            ></textarea>
+            <label for="todo-notes">Notes</label>
+          </li>
+          <li>
+            <input
+              type="date"
+              name="todo-due-date"
+              id="todo-due-date"
+              required
+              spellcheck="false"
+            />
+            <label for="todo-due-date">Due</label>
+          </li>
+          <li>
+            <label for="todo-priority">Priority</label>
+            <input
+              type="range"
+              name="todo-priority"
+              id="todo-priority"
+              class="add-todo-form-priority low"
+              min="0"
+              max="2"
+              value="0"
+              required
+              spellcheck="false"
+            />
+          </li>
+          <li class="buttons-container">
+            <button type="submit" id="todo-submit">Add Todo</button>
+            <button type="button" id="todo-exit" class="exit-button">
+              Exit
+            </button>
+          </li>
+        </ul>
+      </form>
     </div>
-    
-    <div id="add-project-form-wrapper" class="popup-window">
-        <form id="add-project-form" class="add-project-form">
-            <ul>
-                <li>
-                    <input type="text" name="add-project-form-name" id="add-project-form-name" required spellcheck="false">
-                    <label for="add-project-form-name">Project Name</label>
-                </li>
-                <li class="buttons-container">
-                    <button type="submit" id="project-submit">Add project</button>
-                    <button type="button" id="project-exit" class="exit-button">Exit</button>
-                </li>
-            </ul>
-            
-        </form>
-    </div>
-    
-    <div id="todo-view-wrapper" class="popup-window">
-        <form id="todo-view" class="todo-view">
-            <ul>
-                <li>
-                    <h2 id="todo-view-title">Title</h2>
-                </li>
-                <li>
-                    <p id="todo-view-description">Description</p>
-                </li>
-                <li>
-                    <textarea name="todo-view-notes" id="todo-view-notes" spellcheck="false"></textarea>
-                    <label for="todo-view-notes">Notes</label>
-                </li>
-                <li class="buttons-container">
-                    <p id="todo-view-creation-date">Creation date</p>
-                    <p id="todo-view-due-date">Due Date</p>
-                </li>
 
-                <li>
-                    <p id="todo-view-project">Project</p>
-                </li>
-                <li class="buttons-container">
-                    <button type="button" id="todo-view-exit" class="exit-button">Exit</button>
-                    <button type="button" id="todo-view-delete" class="todo-view-delete">✓</button>
-                </li>
-            </ul>
-        </form>
+    <div id="add-project-form-wrapper" class="popup-window">
+      <form id="add-project-form" class="add-project-form">
+        <ul>
+          <li>
+            <input
+              type="text"
+              name="add-project-form-name"
+              id="add-project-form-name"
+              required
+              spellcheck="false"
+            />
+            <label for="add-project-form-name">Project Name</label>
+          </li>
+          <li class="buttons-container">
+            <button type="submit" id="project-submit">Add project</button>
+            <button type="button" id="project-exit" class="exit-button">
+              Exit
+            </button>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+    <div id="todo-view-wrapper" class="popup-window">
+      <form id="todo-view" class="todo-view">
+        <ul>
+          <li>
+            <h2 id="todo-view-title">Title</h2>
+          </li>
+          <li>
+            <p id="todo-view-description">Description</p>
+          </li>
+          <li>
+            <textarea
+              name="todo-view-notes"
+              id="todo-view-notes"
+              spellcheck="false"
+            ></textarea>
+            <label for="todo-view-notes">Notes</label>
+          </li>
+          <li class="buttons-container">
+            <p id="todo-view-creation-date">Creation date</p>
+            <p id="todo-view-due-date">Due Date</p>
+          </li>
+
+          <li>
+            <p id="todo-view-project">Project</p>
+          </li>
+          <li class="buttons-container">
+            <button type="button" id="todo-view-exit" class="exit-button">
+              Exit
+            </button>
+            <button
+              type="button"
+              id="todo-view-delete"
+              class="todo-view-delete"
+            >
+              ✓
+            </button>
+          </li>
+        </ul>
+      </form>
     </div>
 
     <div id="remove-project-form-wrapper" class="popup-window">
-        <div id="remove-project-form">
-            <p>Are you sure you want to delete this project?</p>
-            <div class="buttons-container">
-                <button type="submit" id="remove-project-confirm">Yes</button>
-                <button id="remove-project-cancel" class="exit-button">No</button>
-            </div>
+      <div id="remove-project-form">
+        <p>Are you sure you want to delete this project?</p>
+        <div class="buttons-container">
+          <button type="submit" id="remove-project-confirm">Yes</button>
+          <button id="remove-project-cancel" class="exit-button">No</button>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

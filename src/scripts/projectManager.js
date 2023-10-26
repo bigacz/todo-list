@@ -9,92 +9,91 @@ import Project from './projectLogic';
 window.addEventListener('DOMContentLoaded', loadProjects);
 
 PubSub.subscribe('submitTodoForm', (msg, values) => {
-    addTodo(values);
-})
+  addTodo(values);
+});
 
 PubSub.subscribe('deleteTodo', (msg, data) => {
-    removeTodo(data.projectId, data.todoId);
-})
+  removeTodo(data.projectId, data.todoId);
+});
 
 PubSub.subscribe('removeCurrentProject', removeCurrentProject);
 
 function loadProjects() {
-    let projects = projectStorage.fetchProjects();
-    if(projects == null) {
-        projects = [];
-    }
+  let projects = projectStorage.fetchProjects();
+  if (projects == null) {
+    projects = [];
+  }
 
-    projects.forEach(e => {
-        ProjectDisplay.addProject(ProjectLogic.projectId, e.title);
-        ProjectLogic.addProject(e.title);
+  projects.forEach((e) => {
+    ProjectDisplay.addProject(ProjectLogic.projectId, e.title);
+    ProjectLogic.addProject(e.title);
 
-        const latestProject = ProjectLogic.getLatestProject();
+    const latestProject = ProjectLogic.getLatestProject();
 
-        const todos = e.todos;
-        todos.forEach((e) => {
-            latestProject.addTodo(e);
-        })
-
+    const { todos } = e;
+    todos.forEach((element) => {
+      latestProject.addTodo(element);
     });
+  });
 
-    if(ProjectLogic.getAllProjects().length === 0) {
-        addProject('All');
-    }
-    ProjectDisplay.updateProject();
+  if (ProjectLogic.getAllProjects().length === 0) {
+    addProject('All');
+  }
+  ProjectDisplay.updateProject();
 }
 
 function removeCurrentProject() {
-    const projectId = ProjectDisplay.getCurrentProjectId();
-    if(projectId != 0) {
-        ProjectLogic.removeProject(projectId);
-        ProjectDisplay.removeProject(projectId);
-    }
-    ProjectDisplay.changeProject(0);
+  const projectId = ProjectDisplay.getCurrentProjectId();
+  if (projectId != 0) {
+    ProjectLogic.removeProject(projectId);
+    ProjectDisplay.removeProject(projectId);
+  }
+  ProjectDisplay.changeProject(0);
 
-    updateStorage()
+  updateStorage();
 }
 
 function addProject(title) {
-    const currentProjectId = ProjectLogic.projectId;
-    ProjectDisplay.addProject(currentProjectId, title);
-    ProjectLogic.addProject(title);
+  const currentProjectId = ProjectLogic.projectId;
+  ProjectDisplay.addProject(currentProjectId, title);
+  ProjectLogic.addProject(title);
 
-    ProjectDisplay.changeProject(currentProjectId)
+  ProjectDisplay.changeProject(currentProjectId);
 
-    updateStorage()
+  updateStorage();
 }
 
 function addTodo(values) {
-    const project = getCurrentProject();
-    project.addTodo(values);
-    ProjectDisplay.updateProject()
+  const project = getCurrentProject();
+  project.addTodo(values);
+  ProjectDisplay.updateProject();
 
-    updateStorage()
+  updateStorage();
 }
 
 function removeTodo(projectId, todoId) {
-    const project = ProjectLogic.getProject(+projectId);
+  const project = ProjectLogic.getProject(+projectId);
 
-    project.deleteTodo(+todoId);
+  project.deleteTodo(+todoId);
 
-    updateStorage()
-    ProjectDisplay.updateProject();
+  updateStorage();
+  ProjectDisplay.updateProject();
 }
 
 // Private functions //
 
 function getCurrentProject() {
-    const id = ProjectDisplay.getCurrentProjectId();
-    const project = ProjectLogic.getProject(id);
-    
-    return project
+  const id = ProjectDisplay.getCurrentProjectId();
+  const project = ProjectLogic.getProject(id);
+
+  return project;
 }
 
 function updateStorage() {
-    projectStorage.saveProjects(ProjectLogic.getAllProjects());
+  projectStorage.saveProjects(ProjectLogic.getAllProjects());
 }
 
-export default { 
-    addProject,
-    addTodo 
-}
+export default {
+  addProject,
+  addTodo,
+};

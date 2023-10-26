@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js';
+import { lightFormat } from 'date-fns';
 import ProjectLogic from './projectLogic';
-import { formatISO, lightFormat } from 'date-fns';
 
 const viewWrapper = document.getElementById('todo-view-wrapper');
 const form = document.getElementById('todo-view');
@@ -19,86 +19,88 @@ let cacheProjectId;
 let cacheTodoId;
 
 deleteButton.addEventListener('click', () => {
-    handleDelete();
-    toggle();
-})
+  handleDelete();
+  toggle();
+});
 
 exitButton.addEventListener('click', toggle);
 
 PubSub.subscribe('todoClicked', (msg, values) => {
-    cacheProjectId = values.projectId;
-    cacheTodoId = values.todoId;
+  cacheProjectId = values.projectId;
+  cacheTodoId = values.todoId;
 
-    const project = ProjectLogic.getProject(cacheProjectId);
-    const todo = project.getTodo(cacheTodoId);
-    todo.project = project.title;
+  const project = ProjectLogic.getProject(cacheProjectId);
+  const todo = project.getTodo(cacheTodoId);
+  todo.project = project.title;
 
-    changeValues(todo);
-    toggle();
-})
+  changeValues(todo);
+  toggle();
+});
 
 viewWrapper.addEventListener('click', (e) => {
-    if(e.target.id === viewWrapper.id) {
-        toggle();
-        submit()
-    }
-})
+  if (e.target.id === viewWrapper.id) {
+    toggle();
+    submit();
+  }
+});
 
 function toggle() {
-    viewWrapper.classList.toggle('active')
+  viewWrapper.classList.toggle('active');
 }
 
 function submit() {
-    const project = ProjectLogic.getProject(cacheProjectId);
-    const todo = project.getTodo(cacheTodoId);
-    const notes = viewNotes.value;
+  const project = ProjectLogic.getProject(cacheProjectId);
+  const todo = project.getTodo(cacheTodoId);
+  const notes = viewNotes.value;
 
-    todo.edit({notes});
+  todo.edit({ notes });
 }
 
 function changeValues(valuesObject) {
-    viewTitle.textContent = valuesObject.title
-    viewDescription.textContent = valuesObject.description
+  viewTitle.textContent = valuesObject.title;
+  viewDescription.textContent = valuesObject.description;
 
-    const dueDate = valuesObject.dueDate ?
-        lightFormat(valuesObject.dueDate, 'dd-MM-yyyy') :
-        'Not specified';
-    viewDueDate.textContent = `Due: ${dueDate}`
-    
-    const creationDate = valuesObject.creationDate ?
-        lightFormat(valuesObject.creationDate, 'dd-MM-yyyy') :
-        'Not specified';
-    viewCreationDate.textContent = `Created: ${creationDate}`
+  const dueDate = valuesObject.dueDate
+    ? lightFormat(valuesObject.dueDate, 'dd-MM-yyyy')
+    : 'Not specified';
+  viewDueDate.textContent = `Due: ${dueDate}`;
 
-    let priorityClass;
-    switch(valuesObject.priority) {
-        case 0:
-            priorityClass = 'low';
-            break;
-        case 1:
-            priorityClass = 'medium';
-            break;
-        case 2:
-            priorityClass = 'high';
-            break;
-    }
+  const creationDate = valuesObject.creationDate
+    ? lightFormat(valuesObject.creationDate, 'dd-MM-yyyy')
+    : 'Not specified';
+  viewCreationDate.textContent = `Created: ${creationDate}`;
 
-    const priorities = ['low', 'medium', 'high']
-    priorities.forEach(e => {
-        form.classList.remove(e);
-    })
-    form.classList.add(priorityClass);
-    
-    viewProject.textContent = `Project: ${valuesObject.project}`
-    
-    viewNotes.value = valuesObject.notes;
+  let priorityClass;
+  switch (valuesObject.priority) {
+    case 0:
+      priorityClass = 'low';
+      break;
+    case 1:
+      priorityClass = 'medium';
+      break;
+    case 2:
+      priorityClass = 'high';
+      break;
+    default:
+      break;
+  }
+
+  const priorities = ['low', 'medium', 'high'];
+  priorities.forEach((e) => {
+    form.classList.remove(e);
+  });
+  form.classList.add(priorityClass);
+
+  viewProject.textContent = `Project: ${valuesObject.project}`;
+
+  viewNotes.value = valuesObject.notes;
 }
 
 function handleDelete() {
-    PubSub.publishSync('deleteTodo', {
-        projectId: cacheProjectId,
-        todoId: cacheTodoId
-    });
+  PubSub.publishSync('deleteTodo', {
+    projectId: cacheProjectId,
+    todoId: cacheTodoId,
+  });
 }
 
-export default {}
+export default {};
