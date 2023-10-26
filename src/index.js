@@ -1,7 +1,7 @@
 import './style.css';
 import 'normalize.css';
 import 'pubsub-js';
-import './scripts/projectManager'
+import './scripts/projectManager';
 
 import ProjectManager from './scripts/projectManager';
 import ProjectLogic from './scripts/projectLogic';
