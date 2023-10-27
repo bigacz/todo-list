@@ -199,13 +199,13 @@ body {
 }
 
 .menu-toggle {
-  background-color: transparent;
-  background-image: url(./images/hamburger-menu.svg);
-  background-repeat: no-repeat;
   height: 3rem;
   width: 3rem;
   border: none;
   display: none;
+  background-color: var(--text-color);
+  -webkit-mask-image: url(./images/hamburger-menu.svg);
+  mask-image: url(./images/hamburger-menu.svg);
 }
 
 .remove-project-button,
