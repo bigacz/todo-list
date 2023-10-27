@@ -21,9 +21,10 @@
     </div>
     <div class="display">
       <div class="project-header">
-        <h1 id="project-name">All</h1>
+        <button type="button" class="menu-toggle" id="menu-toggle"></button>
+        <h1 id="project-name" class="project-name">All</h1>
         <form id="sort-form" class="sort-form">
-          <label for="sort-type">Sort by:</label>
+          <label for="sort-type" id="sort-label">Sort by:</label>
           <select name="sort-type" id="sort-type" class="sort-type">
             <option value="alphabetical">A-Z</option>
             <option value="priority">Priority</option>
@@ -41,8 +42,8 @@
           Add Todo
         </button>
         <button
-          id="remove-project-button"
           type="button"
+          id="remove-project-button"
           class="remove-project-button"
         >
           Delete Project
@@ -131,6 +132,7 @@
               id="add-project-form-name"
               required
               spellcheck="false"
+              maxlength="10"
             />
             <label for="add-project-form-name">Project Name</label>
           </li>
@@ -196,3 +198,5 @@
     </div>
   </body>
 </html>
+
+<div class="sidebar-mobile-background" id="sidebar-mobile-background"></div>

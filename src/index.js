@@ -11,3 +11,4 @@ import ProjectDisplay from './scripts/projectDisplay';
 import AddTodoForm from './scripts/addTodoForm';
 import todoView from './scripts/todoView';
 import darkMode from './scripts/darkMode';
+import mobileView from './scripts/mobileView';

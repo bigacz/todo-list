@@ -166,6 +166,17 @@ body {
   padding: 1rem 0.5rem;
 }
 
+.sidebar.active-mobile {
+  display: grid;
+  position: fixed;
+  height: 100%;
+  width: 70%;
+  z-index: 2;
+  -webkit-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 76px -1px rgba(0, 0, 0, 1);
+}
+
 .sidebar button {
   border-radius: 5px;
   border: none;
@@ -185,6 +196,16 @@ body {
 
 .display {
   grid-area: display;
+}
+
+.menu-toggle {
+  background-color: transparent;
+  background-image: url(./images/hamburger-menu.svg);
+  background-repeat: no-repeat;
+  height: 3rem;
+  width: 3rem;
+  border: none;
+  display: none;
 }
 
 .remove-project-button,
@@ -219,11 +240,20 @@ body {
 
 .project-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 0 2rem;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
   justify-items: center;
+  padding: 0.5rem clamp(0rem, 1vw, 4rem);
+}
+
+.project-name {
+  display: none;
+}
+
+.project-name.active {
+  display: block;
 }
 
 .sort-form {
@@ -235,6 +265,11 @@ body {
 
 .sort-form label {
   padding-right: 0.5em;
+  display: none;
+}
+
+.sort-form label.active {
+  display: block;
 }
 
 .sort-type,
@@ -519,4 +554,37 @@ body {
 .text-red-bold {
   color: var(--red);
   font-weight: 600;
+}
+
+.sidebar-mobile-background {
+  display: none;
+  position: fixed;
+  height: 100svh;
+  width: 100svw;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-mobile-background.active {
+  display: block;
+}
+
+@media only screen and (max-width: 760px) {
+  body {
+    grid-template-areas:
+      'header header'
+      'display display';
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .project-header {
+    grid-auto-columns: max-content;
+    gap: 0px;
+  }
 }
