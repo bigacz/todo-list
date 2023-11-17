@@ -51,10 +51,6 @@ function removeMenu() {
   menuBackground.classList.remove('active');
 }
 
-function checkMenu() {
-  return menuBackground.classList.contains('active');
-}
-
 menuBackground.addEventListener('click', removeMenu);
 menuWrapper.addEventListener('click', handleProjectClick);
 
@@ -65,8 +61,6 @@ function handleProjectClick(event) {
   if (targetName === 'BUTTON') {
     removeMenu();
   }
-
-  console.log(target !== addProjectButton);
 
   if (target !== addProjectButton) {
     Misc.bodyRemoveModal();
