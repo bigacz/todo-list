@@ -143,6 +143,10 @@ body {
   font-family: 'Poppins-Medium';
 }
 
+body.menu-active {
+  overflow: hidden;
+}
+
 .header {
   grid-area: header;
   border-bottom: 3px solid var(--text-color);
@@ -586,5 +590,10 @@ body {
   .project-header {
     grid-auto-columns: max-content;
     gap: 0px;
+  }
+
+  .display-buttons {
+    border-radius: 100px;
+    min-width: 50px;
   }
 }

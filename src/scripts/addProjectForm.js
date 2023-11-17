@@ -1,4 +1,5 @@
 import projectManager from './projectManager';
+import Misc from './misc';
 
 const addButton = document.getElementById('project-add-button');
 const formWrapper = document.getElementById('add-project-form-wrapper');
@@ -11,7 +12,7 @@ exitButton.addEventListener('click', () => {
   clearInput();
 });
 
-addButton.addEventListener('click', toggle);
+addButton.addEventListener('click', add);
 formWrapper.addEventListener('click', (e) => {
   if (e.target.id === formWrapper.id) {
     toggle();
@@ -31,10 +32,22 @@ function handleSubmit(event) {
 
 function toggle() {
   formWrapper.classList.toggle('active');
+
+  Misc.bodyToggleModal();
+}
+
+function add() {
+  formWrapper.classList.add('active');
+
+  Misc.bodyAddModal();
 }
 
 function clearInput() {
   nameInput.value = '';
 }
 
-export default { toggle };
+function checkActive() {
+  return formWrapper.classList.contains('active');
+}
+
+export default { toggle, checkActive };

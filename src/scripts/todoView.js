@@ -1,6 +1,7 @@
 import PubSub from 'pubsub-js';
 import { lightFormat } from 'date-fns';
 import ProjectLogic from './projectLogic';
+import Misc from './misc';
 
 const viewWrapper = document.getElementById('todo-view-wrapper');
 const form = document.getElementById('todo-view');
@@ -46,6 +47,7 @@ viewWrapper.addEventListener('click', (e) => {
 
 function toggle() {
   viewWrapper.classList.toggle('active');
+  Misc.bodyToggleModal();
 }
 
 function submit() {

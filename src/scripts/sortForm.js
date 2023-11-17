@@ -1,5 +1,6 @@
 import PubSub from 'pubsub-js';
 import { compareAsc } from 'date-fns';
+import Misc from './misc';
 
 const formNode = document.getElementById('sort-form');
 const typeNode = document.getElementById('sort-type');

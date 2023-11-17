@@ -1,7 +1,12 @@
+import Misc from './misc';
+import ProjectForm from './addProjectForm';
+
 const addTodoButton = document.getElementById('todo-activate');
 const deleteProjectButton = document.getElementById('remove-project-button');
 const sortLabel = document.getElementById('sort-label');
 const projectName = document.getElementById('project-name');
+
+const addProjectButton = document.getElementById('project-add-button');
 
 const menuToggle = document.getElementById('menu-toggle');
 const menuWrapper = document.getElementById('project-container');
@@ -17,15 +22,16 @@ function handleMediaChange(event) {
     deleteProjectButton.textContent = 'X';
     sortLabel.classList.remove('active');
     projectName.classList.remove('active');
-
-    removeMenu();
   } else {
     addTodoButton.textContent = 'Add Todo';
     deleteProjectButton.textContent = 'Delete Project';
     sortLabel.classList.add('active');
     projectName.classList.add('active');
+  }
+  removeMenu();
 
-    removeMenu();
+  if (!ProjectForm.checkActive()) {
+    Misc.bodyRemoveModal();
   }
 }
 
@@ -36,6 +42,8 @@ menuToggle.addEventListener('click', toggleMenu);
 function toggleMenu() {
   menuWrapper.classList.toggle('active-mobile');
   menuBackground.classList.toggle('active');
+
+  Misc.bodyToggleModal();
 }
 
 function removeMenu() {
@@ -43,14 +51,25 @@ function removeMenu() {
   menuBackground.classList.remove('active');
 }
 
+function checkMenu() {
+  return menuBackground.classList.contains('active');
+}
+
 menuBackground.addEventListener('click', removeMenu);
 menuWrapper.addEventListener('click', handleProjectClick);
 
 function handleProjectClick(event) {
-  const target = event.target.nodeName;
+  const { target } = event;
+  const targetName = target.nodeName;
 
-  if (target === 'BUTTON') {
+  if (targetName === 'BUTTON') {
     removeMenu();
+  }
+
+  console.log(target !== addProjectButton);
+
+  if (target !== addProjectButton) {
+    Misc.bodyRemoveModal();
   }
 }
 

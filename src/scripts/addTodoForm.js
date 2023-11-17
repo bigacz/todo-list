@@ -1,4 +1,5 @@
 import PubSub from 'pubsub-js';
+import Misc from './misc';
 
 const formWrapper = document.getElementById('add-todo-form-wrapper');
 const activateButton = document.getElementById('todo-activate');
@@ -41,6 +42,7 @@ activateButton.addEventListener('click', toggle);
 
 function toggle() {
   formWrapper.classList.toggle('active');
+  Misc.bodyToggleModal();
 }
 
 function clearInputs() {
