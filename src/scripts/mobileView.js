@@ -51,7 +51,10 @@ function removeMenu() {
   menuBackground.classList.remove('active');
 }
 
-menuBackground.addEventListener('click', removeMenu);
+menuBackground.addEventListener('click', () => {
+  Misc.bodyRemoveModal();
+  removeMenu();
+});
 menuWrapper.addEventListener('click', handleProjectClick);
 
 function handleProjectClick(event) {
